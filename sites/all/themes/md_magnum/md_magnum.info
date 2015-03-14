@@ -1,0 +1,95 @@
+name = MD Magnum One-page Theme
+description = MegaDrupal Theme
+core = 7.x
+engine = phptemplate
+
+settings[toggle_logo] = 1
+settings[toggle_name] = 1
+settings[toggle_slogan] = 1
+settings[toggle_node_user_picture] = 1
+settings[toggle_comment_user_picture] = 1
+settings[toggle_comment_user_verification] = 1
+settings[toggle_favicon] = 1
+settings[toggle_main_menu] = 1
+settings[toggle_secondary_menu] = 1
+settings[default_logo] = 1
+settings[default_favicon] = 1
+settings[css3_textarea] = 0
+settings[webclip_precomp] = 1
+settings[typo_heading_style_enable] = 0
+settings[nodetitle_enable] = 0
+settings[typo_view_title_enable] = 0
+settings[skins] = 'default'
+settings[header_size] = 'full'
+settings[header_background_type] = 'video'
+settings[header_video_play] = 0
+settings[header_video_link] = 'http://www.youtube.com/watch?v=kn-1D5z3-Cs'
+settings[header_video_content_display] = 1
+settings[parallax_1_enabled] = 0
+settings[parallax_2_enabled] = 1
+settings[parallax_3_enabled] = 1
+settings[parallax_1_size] = 'medium'
+settings[parallax_2_size] = 'small'
+settings[parallax_3_size] = 'medium'
+settings[parallax_1_background_type] = 'global'
+settings[parallax_2_background_type] = 'color'
+settings[pr_2_bg_color] = '333333'
+settings[parallax_3_background_type] = 'custom'
+settings[footer_background] = 'color'
+settings[ft_bg_color] = 'f0f0f0'
+settings[footer_content_display] = 1
+settings[social_link_1] = 'http://facebook.com'
+settings[nf_background] = 'custom'
+settings[pr1_big_text_1] = 'Magnum is made to tell a story'
+settings[pr1_sub_text_1] = '— Cr. Lee, Freelance Developer —'
+settings[pr2_big_text_1] = 'Magnum is made to tell a story'
+settings[pr2_sub_text_1] = '— Cr. Lee, Freelance Developer —'
+settings[pr3_big_text_1] = 'Magnum is made to tell a story'
+settings[pr3_sub_text_1] = '— Cr. Lee, Freelance Developer —'
+settings[preloader_delay_time] = '350'
+settings[preloader_bg_color] = 'fff'
+settings[preloader_type] = 1
+settings[preloader_bg_type] = 'skin'
+settings[menu_sticky] = 1
+settings[menu_bg_color] = '1A1A1A'
+settings[menu_link_color] = '7A7A7A'
+settings[menu_link_hover_color] = 'FFFFFF'
+settings[maintenance_message] = '<p><span>Our awesome website is</span> <br> Under construction </p>'
+settings[nf_text] = 'Oops! I couldnt find that one.<br>Click the button below to go back home.'
+settings[footer_text] = 'Magnum™ design by <a class="underline" target="blank" href="http://themeforest.net/user/Pixel-Stuff">PixelStuff</a>- Drupal theme by <a class="underline" target="blank" href="http://themeforest.net/user/megadrupal">MegaDrupal</a><br>— Made with <i class="fontello icon-heart text-color"></i>on The Moon —'
+; Important Drupal regions
+
+regions[header] = Header
+
+regions[navigation] = Navigation
+
+regions[sidebar] = Sidebar
+
+regions[introduction] = Introduction
+
+regions[work] = Featured Work
+
+regions[parallax_1] = Parallax 1
+
+regions[about_me] = About Me
+
+regions[about_us] = About Us
+
+regions[parallax_2] = Parallax 2
+
+regions[single_services] = Single Services
+
+regions[business_services] = Business Services
+
+regions[parallax_3] = Parallax 3
+
+regions[contact] = Contact
+
+regions[content] = Content
+
+regions[footer] = Footer
+
+project status url = http://updates.megadrupal.com/release-history
+version = "7.x-2.2"
+core = "7.x"
+project = "md_magnum"

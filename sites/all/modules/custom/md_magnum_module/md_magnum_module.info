@@ -1,0 +1,4 @@
+name = MD Magnum Module
+description = Module for MD Magnum Theme configuration
+core = 7.x
+package = Megadrupal

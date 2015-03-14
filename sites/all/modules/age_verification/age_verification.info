@@ -1,0 +1,5 @@
+name = Age Verification
+description = "Channel in bound URLs to age gate page if user is not verified"
+core = 7.x
+
+configure = admin/config/development/age-verification

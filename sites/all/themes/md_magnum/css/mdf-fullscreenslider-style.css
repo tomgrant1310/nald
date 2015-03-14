@@ -1,0 +1,41 @@
+.mdf-arrow-left, .mdf-arrow-right {
+	background: none;
+	color: #ffffff;
+	font-size: 42px;
+}
+
+.mdf-arrow-left:hover, .mdf-arrow-right:hover {
+	color: #ffffff;
+	font-size: 56px;
+}
+
+.mdf-arrow-left {
+	left: 10px;
+}
+
+.mdf-arrow-left:after {
+	font-family: 'fontello';
+	content: '\e896';
+}
+
+.mdf-arrow-right {
+	right: 10px;
+}
+
+.mdf-arrow-right:after {
+	font-family: 'fontello';
+	content: '\e897';
+}
+
+.mdf-arrow-left, .mdf-arrow-right {
+	position: absolute;
+	top: 50%;
+	margin-top: -20px;
+	outline: 0;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	/*text-indent: -9999px;*/
+	z-index: 88;
+	text-align: center;
+}

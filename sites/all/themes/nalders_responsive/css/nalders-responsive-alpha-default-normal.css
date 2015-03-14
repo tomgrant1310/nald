@@ -1,0 +1,117 @@
+/* This file will hold styles that are loaded using the same media query as the normal grid. */
+/* If you are using the default media queries provided by Omega, these styles will also
+ *  apply to the widescreen layout unless they are overridden by the widescreen styles. */
+ 
+.block-13 {text-align:center;}
+ 
+ 
+ #home-strap{
+    background-color: #FFFFFF;
+    margin: auto;
+    padding: 20px 30%;
+    visibility: visible;
+}
+
+#home-strap h2 {
+    color: #E72683;
+	font-weight: normal;
+}
+.region-inner.region-menu-inner {
+    float: right;
+    position: absolute;
+    right: 0px;
+    top: -58px;
+}
+
+
+.node-schemaorg-person img{
+    float: left;
+    margin-right: 15px;
+}
+
+.region-sidebar-second .block-3 {
+    display: block;
+}
+
+.region-sidebar-second .block-16 {
+    display: none;
+}
+
+#views-slideshow-bxslider-1.views-slideshow-bxslider li img {
+    border-radius: 100%;
+    margin-right: auto;
+}
+/*.view-team-and-location .views-field-title {
+    border-radius: 100%;
+    box-shadow: 0 0 0 0 rgba(240, 183, 54, 0.7) inset;
+    display: block;
+    height: 100%;
+    left: 0;
+    padding: 35% 26%;
+    position: absolute;
+    transition: all 0.2s ease-in-out 0s;
+    width: 100%;
+}*/
+.navigation .primary-menu ul li a {
+    background-color: none;
+    border: none;
+    color: #888888;
+    text-transform: capitalize; }
+    .navigation .primary-menu ul li a.active, .navigation .primary-menu ul li a:hover {
+      background-color: none;
+      border: none; }
+    .navigation .primary-menu ul li a.active {
+      color: black; }
+    .navigation .primary-menu ul li a:hover {
+      color: #999999; }
+  .navigation .second-menu {
+    clear: left; }
+    .navigation .second-menu ul li a {
+      background-color: #eeeeee;
+      border: 1px solid #cccccc;
+      color: #888888;
+      padding: 12px 18px;
+      text-transform: capitalize; }
+      .navigation .second-menu ul li a.active, .navigation .second-menu ul li a:hover {
+        background-color: white;
+        border: 1px solid #cccccc; }
+      .navigation .second-menu ul li a.active {
+        color: black; }
+      .navigation .second-menu ul li a:hover {
+        color: #999999; }
+
+.zone-menu .block-menu {
+  display: block;
+  font-size: 1em;
+  margin: 0;
+  padding: 10px 0 0 0; }
+  .zone-menu .block-menu ul.menu li {
+    display: inline-block;
+    float: left;
+    list-style: none;
+    margin: 0 0 7px 0;
+    padding: 0;
+    width: 100%; }
+    .zone-menu .block-menu ul.menu li a {
+      background-color: #eeeeee;
+      border: 1px solid #cccccc;
+      color: #888888;
+      display: block;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-decoration: none;
+      text-transform: capitalize; }
+      .zone-menu .block-menu ul.menu li a.active, .zone-menu .block-menu ul.menu li a:hover {
+        background-color: white;
+        border: 1px solid #cccccc; }
+      .zone-menu .block-menu ul.menu li a.active {
+        color: black; }
+      .zone-menu .block-menu ul.menu li a:hover {
+        color: #999999;
+        text-decoration: none; }
+
+.front .region-content .view-content .views-row {
+    float: left;
+    width: 48%;
+} 

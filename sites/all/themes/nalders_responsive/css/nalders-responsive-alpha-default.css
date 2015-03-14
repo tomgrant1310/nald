@@ -1,0 +1,54 @@
+/* This file will hold styles for all layouts using the alpha grid (i.e. not the mobile layout). */
+.navigation .primary-menu ul li a {
+    background-color: ;
+    border: none;
+    color: #888888;
+    text-transform: capitalize; }
+	
+	.navigation .primary-menu ul li.last a, .navigation .second-menu ul li.last a {
+    border-right: none;
+    margin-left: -2px;
+    margin-right: 0;
+}
+
+.navigation .primary-menu ul li.first a, .navigation .second-menu ul li.first a {
+    border-left: none;
+}
+
+/*.view-taxonomy-term .views-row-odd {
+    background: none repeat scroll 0 0 #E1E5F0;
+}*/
+
+
+.view-taxonomy-term .views-row-odd,.view-team-and-location .views-row-odd {
+    background: none repeat scroll 0 0 #E1E5F0;
+}
+
+.view-taxonomy-term .views-row-even,.view-team-and-location .views-row-even {
+    background: none repeat scroll 0 0 rgba(225, 229, 239, 0.34);
+	}
+
+.view-team-and-location .item-list ul li {
+    margin: 0 0 15px 0.25em;
+    padding: 20px;
+    min-height: 200px;
+}
+.view-taxonomy-term .views-row {
+    margin: 0 0 15px 0.25em;
+    min-height: 200px;
+    padding: 20px;
+}
+
+.node-type-schemaorg-person .region-content-inner {background: none repeat scroll 0 0 #E1E5F0;
+padding:20px;}
+
+
+.node-schemaorg-person img {
+    float: left;
+    margin: 0 12px 12px 0;
+}
+
+.views-field.views-field-field-schemaorg-photo {
+    float: left;
+    margin-right: 20px;
+}

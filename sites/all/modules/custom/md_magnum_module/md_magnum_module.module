@@ -1,0 +1,662 @@
+<?php
+/**
+ * hook_block_info
+ */
+function md_magnum_module_block_info() {
+    $blocks['menu'] = array(
+        'info' => t('Md Magnum One-page Main Menu'), //The name that will appear in the block list.
+        'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+    );
+    for($i=1;$i<=3;$i++) {
+        $blocks['parallax_'.$i.''] = array(
+            'info' => t('Parallax Block '.$i.''),
+            'cache' => DRUPAL_CACHE_PER_ROLE,
+        );
+    }
+    $blocks['header'] = array(
+        'info'  => t('Header Block'),
+        'cache' => DRUPAL_CACHE_PER_ROLE,
+    );
+    $blocks['introduction'] = array(
+        'info'  => t('Introduction Block'),
+        'cache' => DRUPAL_CACHE_PER_ROLE,
+    );
+    $blocks['footer'] = array(
+        'info'  => t('Footer Block'),
+        'cache' => DRUPAL_CACHE_PER_ROLE,
+    );
+
+    return $blocks;
+}
+/**
+ * Implement hook_block_view
+ * @return data
+ */
+function md_magnum_module_block_view($delta = '') {
+    $block = array();
+    $css = '';
+    global $base_url;
+    for($i=1;$i<=3;$i++) {
+        switch($delta) {
+            case 'parallax_'.$i.'':
+                $block['subject'] = t('Parallax '.$i.'');
+                $block['content'] = '';
+                if(theme_get_setting('parallax_'.$i.'_enabled') == 1){
+                    $bg_type = theme_get_setting('parallax_'.$i.'_background_type');
+                    $pr_size = theme_get_setting('parallax_'.$i.'_size');
+                    if($bg_type == 'global') {
+                        $block['content'] .= '<div class="pr'.$i.'-nobg">';
+                    }
+                    if($bg_type == 'custom') {
+                        $block['content'] .= '<div id="pr'.$i.'-slider" class="backslider header '.$pr_size.'">';
+                        if($slide = theme_get_setting('pr_'.$i.'_image_slide','md_magnum')) {
+                            $block['content'] .= '<ul class="bs-slides">';
+                            foreach ($slide as $key => $value) {
+                                if($slide[$key]['image'] != null){
+                                    $image_path = md_magnum_theme_setting_check_path($slide[$key]['image']);
+                                    $block['content'] .= '<li><img src="'.$image_path.'" alt="Pic"></li>';
+                                }
+                            }
+                            $block['content'] .= '</ul>';
+                        }
+                    }
+                    if($bg_type == 'video') {
+                        $video_link = theme_get_setting('pr'.$i.'_video_link');
+                        $block['content'] .= '<div class="pr'.$i.'-video-container">
+		                        <a id="pr'.$i.'-video" class="pr'.$i.'-video" data-property="{videoURL:\''.$video_link.'\'}"></a>
+	                        </div>';
+
+                        $block['content'] .= '<div id="pr'.$i.'-video-bg" class="header '.$pr_size.'">';
+
+                    }
+                    $block['content'] .= '<div class="header '.$pr_size.'">';
+                    if($bg_type == 'video') {
+                        $block['content'] .= '<!-- Video controls -->
+                            <div id="pr'.$i.'-video-controls" class="video-controls">
+                                <button class="small-play-btn" onclick="jQuery(\'#pr'.$i.'-video\').playYTP()"><i class="fontello icon-play"></i></button>
+                                <button class="small-pause-btn" onclick="jQuery(\'#pr'.$i.'-video\').pauseYTP()"><i class="fontello icon-pause"></i></button>
+                                <button onclick="jQuery(\'#pr'.$i.'-video\').toggleVolume()"><i class="fontello icon-volume-up"></i></button>
+                            </div>';
+                    }
+                    $block['content'] .= '<div class="header-center">';
+                    $content_type = theme_get_setting('pr_'.$i.'_content_display','md_magnum');
+                    if($content_type == 'text'){
+                        $block['content'] .= '<div class="centerdiv text-white">';
+                        $pr_ct_text = theme_get_setting('pr_'.$i.'_ct_text','md_magnum');
+                        if(count($pr_ct_text) > 1){
+                            $block['content'] .= '<div class="quote-slider"><ul class="quote-slider-'.$i.' slides">';
+                        }
+                        foreach($pr_ct_text as $key2 => $value2 ){
+                            if(count($pr_ct_text) > 1){ $block['content'] .=  '<li>'; }
+                            $block['content']   .= '<h4 class="bigtext"><q>'.$pr_ct_text[$key2]['title'].'</q></h4>
+                                                        <h6 class="bigtext serif italic">'.$pr_ct_text[$key2]['sub_title'].'</h6>';
+                            if(count($pr_ct_text) > 1){ $block['content'] .=  '</li>'; }
+                        }
+                        if(count($pr_ct_text) > 1){
+                            $block['content'] .= '</ul></div>';
+                        }
+                        if(count($pr_ct_text) > 1){
+                            /*$block['content'] .= '<a href="javascript:void(0)" class="quote-prev-'.$i.' bx-outer-prev"></a>
+                                                   <a href="javascript:void(0)" class="quote-next-'.$i.' bx-outer-next"></a>';*/
+                        }
+                        $block['content'] .= '</div>';
+                    }
+                    if($content_type == 'text_link') {
+                        $text_display = theme_get_setting('pr'.$i.'_tl_text_display');
+                        $button_text = theme_get_setting('pr'.$i.'_tl_bt_title');
+                        $button_link = theme_get_setting('pr'.$i.'_tl_bt_link');
+                        $button_icon = theme_get_setting('pr'.$i.'_tl_bt_icon');
+                        $block['content'] .= '<div class="centerdiv">';
+                        $block['content'] .= '<h5 class="bigtext serif italic text-color">'; if($text_display) { $block['content'] .= $text_display;} $block['content'] .= '</h5>';
+                        $block['content'] .= '<p><a href="'; if($button_link) { $block['content'] .= $button_link;} $block['content'] .= '" class="button outline white smoothscroll">';
+                        $block['content'] .= $button_text;
+                        if($button_icon) {$block['content'] .= '<i class="'.$button_icon['bundle'].' '.$button_icon['icon'].'"></i>';}
+                        $block['content'] .= '</a></p>';
+                        $block['content'] .= '</div>';
+                    }
+                    $block['content'] .= '</div>';
+                    if($bg_type == 'custom') {
+                        $block['content'] .= '</div>';
+                    }
+                    if($bg_type == 'video') {
+                        $block['content'] .= '</div>';
+                    }
+                    $block['content'] .= '</div>';
+                }
+                if($bg_type == 'global') {
+                    $block['content'] .= '</div>';
+                }
+                break;
+        }
+    }
+    switch($delta) {
+        case 'header':
+            $block['subject'] = t('Header Block');
+            $header_size = theme_get_setting('header_size');
+            $header_bg_type = theme_get_setting('header_background_type');
+            if($header_bg_type != 'md_fullscreen_slider') {
+                $block['content'] = '<div id="home" class="home-wrap';
+                if($header_size == 'short') {
+                    $block['content'] .= '-short ';
+                }
+                if($header_bg_type == 'video') {
+                    $block['content'] .= ' video">';
+                } else {
+                    $block['content'] .= '">';
+                }
+            }
+            if($header_bg_type != 'md_fullscreen_slider') {
+                $block['content'] .= '<div class="home-content text-white"><!-- Logo and text -->';
+                if(theme_get_setting('logo_retina_path','md_magnum')) {
+                    $logo_path = md_magnum_theme_setting_check_path(theme_get_setting('logo_retina_path','md_magnum'));
+                } elseif(theme_get_setting('logo_normal_path','md_magnum')) {
+                    $logo_path = md_magnum_theme_setting_check_path(theme_get_setting('logo_normal_path','md_magnum'));
+                } else {
+                    $logo_path = $base_url.'/'.drupal_get_path('theme','md_magnum').'/images/magnum-logo-home.png';
+                }
+                if($header_bg_type == 'video' && theme_get_setting('header_video_content_display','md_magnum') == 2) {
+                    $block['content'] .= '<img src="'.$logo_path.'" alt="magnum-logo-home" width="62" height="48">';
+                    $block['content'] .= '<h1 class="bigtext letterspace uppercase bold no-margin">'.theme_get_setting('hd_vd_ct_2_big_text','md_magnum').'</h1>
+			                                <h6 class="bigtext serif italic margin-bottom">'.theme_get_setting('hd_vd_ct_2_sub_text','md_magnum').'</h6>';
+                    if(theme_get_setting('header_video_play') == 0) {
+                        $block['content'] .= '<!-- The play button -->
+			        <a class="button white play-btn-normal margin-bottom" onclick="jQuery(\'#header-video\').playYTP()"><i class="fontello icon-play-circled2"></i>Watch Video</a>';
+                    }
+                    $hd_vd_ct_2_icon = theme_get_setting('hd_vd_ct_2_icon','md_magnum');
+
+                    $block['content'] .= '<!-- Home menu --><ul class="home-menu">';
+
+                    foreach ($hd_vd_ct_2_icon as $key => $value) {
+                        $icon_value = $hd_vd_ct_2_icon[$key]['icon'];
+                        $block['content'] .= '
+                        <li>
+                            <a href="'.$hd_vd_ct_2_icon[$key]['link'].'" class="smoothscroll">
+                                <i class="'.$icon_value['bundle'].' '.$icon_value['icon'].'"></i>
+                                <b>'.$hd_vd_ct_2_icon[$key]['title'].'</b>
+                                <em>'.$hd_vd_ct_2_icon[$key]['sub_title'].'</em>
+                            </a>
+                         </li>';
+                    }
+                    $block['content'] .= '</ul>';
+                }
+                if($header_bg_type == 'video' && theme_get_setting('header_video_content_display', 'md_magnum') == 1) {
+                    $block['content'] .= '<hr>
+                                <h5 class="bigtext serif italic margin-bottom">'.theme_get_setting('hd_vd_ct_dp_1_sub_text','md_magnum').'</h5>
+                                <h1 class="fittext uppercase bold">'.theme_get_setting('hd_vd_ct_dp_1_big_text','md_magnum').'</h1>';
+                    if(theme_get_setting('header_video_play') == 0) {
+                        $block['content'] .= '<!-- Play button for the video -->
+                        <a class="play-btn" onclick="jQuery(\'#header-video\').playYTP()">
+                        <i class="fontello icon-play"></i>
+                        </a><hr>';
+                    } else {
+                        $block['content'] .= '<hr>';
+                    }
+                }
+                if($header_bg_type == 'custom') {
+                    if(theme_get_setting('header_content_display') == 'text') {
+                        $block['content'] .= '<div class="centerdiv text-white">';
+                        $hd_slide_ct_text = theme_get_setting('hd_slide_ct_text');
+                        if(count($hd_slide_ct_text) > 1){
+                            $block['content'] .= '<div class="header-slider"><ul class="slides">';
+                        }
+                        foreach($hd_slide_ct_text as $key2 => $value2 ){
+                            if(count($hd_slide_ct_text) > 1){ $block['content'] .=  '<li>'; }
+                            $block['content']   .= '<h4 class="bigtext"><q>'.$hd_slide_ct_text[$key2]['title'].'</q></h4>
+                                                                <h6 class="bigtext serif italic">'.$hd_slide_ct_text[$key2]['sub_title'].'</h6>';
+                            $block['content'] .= '<p><a class="button outline white margin-bottom smoothscroll" href="'.$hd_slide_ct_text[$key2]['button_text'].'">'.$hd_slide_ct_text[$key2]['button_link'].'</a></p>';
+                            if(count($hd_slide_ct_text) > 1){ $block['content'] .=  '</li>'; }
+                        }
+                        if(count($hd_slide_ct_text) > 1){
+                            $block['content'] .= '</ul></div>';
+                        }
+                        $block['content'] .= '</div>';
+                    }
+                    if(theme_get_setting('header_content_display') == 'text_icon') {
+                        $block['content'] .= '<div class="home-content text-white"><!-- Logo and text -->';
+                        $block['content'] .= '<img src="'.$logo_path.'" alt="magnum-logo-home" width="62" height="48">';
+                        $block['content'] .= '<h1 class="bigtext letterspace uppercase bold no-margin">'.theme_get_setting('hd_slide_ct_big_text','md_magnum').'</h1>
+			            <h6 class="bigtext serif italic margin-bottom">'.theme_get_setting('hd_slide_ct_sub_text','md_magnum').'</h6>';
+                        $hd_slide_ct_text_icon = theme_get_setting('hd_slide_ct_text_icon','md_magnum');
+
+                        $block['content'] .= '<!-- Home menu --><ul class="home-menu">';
+
+                        foreach ($hd_slide_ct_text_icon as $key => $value) {
+                            $icon_value = $hd_slide_ct_text_icon[$key]['icon'];
+                            $block['content'] .= '<li>
+                                                <a href="'.$hd_slide_ct_text_icon[$key]['link'].'" class="smoothscroll">
+                                                    <i class="'.$icon_value['bundle'].' '.$icon_value['icon'].'"></i>
+                                                    <b>'.$hd_slide_ct_text_icon[$key]['title'].'</b>
+                                                    <em>'.$hd_slide_ct_text_icon[$key]['sub_title'].'</em>
+                                                </a>
+				                         </li>';
+                        }
+
+                        $block['content'] .= '</ul>';
+                        $block['content'] .= '</div>';
+                    }
+                }
+                $block['content'] .= '</div>';
+                if($header_bg_type == 'video') {
+                    $block['content'] .= '<!-- Background with youtube video -->
+                    <div class="video-container">
+                        <a id="header-video" class="fullscreen-video" data-property="{videoURL:\''.theme_get_setting('header_video_link','md_magnum').'\'}"></a>
+                    </div>';
+                    $block['content'] .= '<!-- Video controls -->
+                    <div id="header-video-controls" class="video-controls">';
+                    if(theme_get_setting('header_video_play') == 1) {
+                        $block['content'] .= '<button class="small-play-btn" onclick="jQuery(\'#header-video\').playYTP()"><i class="fontello icon-play"></i></button>';
+                    }
+                    $block['content'] .= '<button class="small-pause-btn" onclick="jQuery(\'#header-video\').pauseYTP()"><i class="fontello icon-pause"></i></button>
+                                      <button onclick="jQuery(\'#header-video\').toggleVolume()"><i class="fontello icon-volume-up"></i></button>
+                                </div></div>';
+                }
+                if(theme_get_setting('header_video_image_fallback','md_magnum')){
+                    $header_vd_image_fallback = theme_get_setting('header_video_image_fallback','md_magnum');
+                    $hd_vd_fallback_path = md_magnum_theme_setting_check_path($header_vd_image_fallback);
+                }
+            }
+            if($header_bg_type == 'custom') {
+                $hd_image_slide = theme_get_setting('hd_image_slide','md_magnum');
+                $block['content'] .= '</div><div id="header-slider" class="backslider">';
+                $block['content'] .= '<ul class="bs-slides">';
+                foreach ($hd_image_slide as $key => $value) {
+                    if($hd_image_slide[$key]['image'] != null){
+                        $hd_image_path = file_create_url(file_build_uri($hd_image_slide[$key]['image']));
+                        $block['content'] .= '<li><img src="'.$hd_image_path.'" alt="Pic"></li>';
+                    }
+                }
+                $block['content'] .= '</ul>';
+                $block['content'] .= '</div>';
+            }
+            if($header_bg_type == 'video') {
+                $block['content'] .= '<div style="background-image: url(\''.$hd_vd_fallback_path.'\');" class="fullscreen-img"></div>';
+            }
+            if($header_bg_type != 'md_fullscreen_slider') {
+                $block['content'] .= '</div>';
+            }
+            break;
+        case 'menu':
+            $block['subject'] = 'MD Magnum Main Menu Block';
+            $block['content'] = '';
+            $menu = menu_navigation_links('main-menu');
+            if(theme_get_setting('logo_retina_path','md_magnum')) {
+                $logo_path = md_magnum_theme_setting_check_path(theme_get_setting('logo_retina_path','md_magnum'));
+            } elseif(theme_get_setting('logo_normal_path','md_magnum')) {
+                $logo_path = md_magnum_theme_setting_check_path(theme_get_setting('logo_normal_path','md_magnum'));
+            } else {
+                $logo_path = $base_url.'/'.drupal_get_path('theme','md_magnum').'/images/magnum-logo-home.png';
+            }
+            $block['content'] .= '<!-- Menu -->
+            <div class="main-menu fixedmenu">
+                <div class="menu-wrap">
+                <!-- Your symbolic or typographic logo -->
+                <a href="'.$base_url.'"><img src="'.$logo_path.'" alt="magnum logo color" width="38" height="30" class="menu-logo"></a>
+                <!--<h1><a href="#home" class="smoothscroll">Magnum</a></h1>-->
+                <!-- The menu toggle -->
+                <input type="checkbox" id="toggle-menu" />
+                <label for="toggle-menu" class="toggle-menu"></label>';
+            $block['content'] .= '<!-- The menu items -->
+                <ul class="menu-nav">';
+            foreach($menu as $key => $values):
+                $menu_title = $values['title'];
+                $enable_menu_scroll = variable_get('enable-scroll-'.$key.'');
+                if($enable_menu_scroll == 1) {
+                    $menu_scrollto_path = variable_get(''.$key.'-scrollto-path');
+
+                    $block['content'] .= '<li><a href="'.$base_url.'/'.$menu_scrollto_path.'" class="smoothscroll">'.$menu_title.'</a></li>';
+
+                } else {
+                    if($values['href'] == '<front>') {
+                        $block['content'] .= '<li><a href="'.$base_url.'">'.$menu_title.'</a></li>';
+                    } elseif(url_is_external($values['href']) == false) {
+                        $block['content'] .= '<li><a href="'.$base_url.'/'.$values['href'].'">'.$menu_title.'</a></li>';
+                    } else {
+                        $block['content'] .= '<li><a href="'.$values['href'].'">'.$menu_title.'</a></li>';
+                    }
+                }
+            endforeach;
+            $block['content'] .= '</ul>
+                </div>
+            </div>';
+            break;
+        case 'footer':
+            $block['subject'] = 'Footer Block';
+            $block['content'] = '';
+            $footer_content_type = theme_get_setting('footer_content_display');
+            $footer_bg_type = theme_get_setting('footer_background');
+            if($footer_bg_type == 'video' || $footer_bg_type == 'custom' || $footer_bg_type == 'pattern' || $footer_bg_type == 'color') {
+                if($footer_content_type == '1') {
+                    $block['content'] .= '<section class="footer-two backslider">';
+                }
+                if ($footer_content_type == '2'){
+                    $block['content'] .= '<section class="footer backslider">';
+                }
+                if($footer_bg_type == 'custom') {
+                    $footer_image = theme_get_setting('ft_image_slide','md_magnum');
+                    $block['content'] .= '<div id="footer-slider">';
+                    $block['content'] .= '<ul class="bs-slides">';
+                    foreach ($footer_image as $key => $value) {
+                        if($footer_image[$key]['image'] != null){
+                            $image_path = file_create_url(file_build_uri($footer_image[$key]['image']));
+                            $block['content'] .= '<li><img src="'.$image_path.'" alt="Pic"></li>';
+                        }
+                    }
+                    $block['content'] .= '</ul>';
+                }
+                if($footer_bg_type == 'video') {
+                    $ft_video_link = theme_get_setting('ft_video_link');
+                    $block['content'] .= '<div class="footer-video-container">
+                            <a id="footer-video" class="footer-video" data-property="{videoURL:\''.$ft_video_link.'\'}"></a>
+                        </div>';
+                    $block['content'] .= '<div id="footer-video-bg">';
+                }
+                if($footer_content_type == '1') {
+                    $block['content'] .= '
+                <div class="row">
+                    <div class="twelve columns">';
+                    if($footer_bg_type == 'video') {
+                        $block['content'] .= '<!-- Video controls -->
+                    <div id="footer-video-controls" class="video-controls">
+                        <button class="small-play-btn" onclick="jQuery(\'#footer-video\').playYTP()"><i class="fontello icon-play"></i></button>
+                        <button class="small-pause-btn" onclick="jQuery(\'#footer-video\').pauseYTP()"><i class="fontello icon-pause"></i></button>
+                        <button onclick="jQuery(\'#footer-video\').toggleVolume()"><i class="fontello icon-volume-up"></i></button>
+                    </div>';
+                    }
+                    if(drupal_is_front_page() == TRUE ) {
+                        $block['content'] .= '<a href="'.$base_url.'/#home" class="smoothscroll "><i class="icon icon-up-open"></i></a>';
+                    }else {
+                        $block['content'] .= '<a href="#top" class="smoothscroll "><i class="icon icon-up-open"></i></a>';
+                    }
+
+                    if(theme_get_setting('ft_sc','md_magnum')) {
+                        $block['content'] .= '<p class="socials">';
+                        $ft_sc = theme_get_setting('social_acc','md_magnum');
+                        foreach ($ft_sc as $key => $value) {
+                            $sc_icon_value = $ft_sc[$key]['icon'];
+                            $block['content'] .= '<a href="'.$ft_sc[$key]['social_link'].'" target="_blank"><i class="'.$sc_icon_value['icon'].' icon outline light"></i></a>';
+                        }
+                        $block['content'] .= '</p>';
+                    }
+                    $block['content'] .= '<!-- Credits -->
+                        <p class="text-light">'.theme_get_setting('footer_text').'</p>';
+
+                    $block['content'] .= '</div></div>';
+                }
+                if($footer_content_type == '2'){
+                    $block['content'] .= '
+                <div class="row">
+                <!-- Credits -->
+                <div class="six columns alignleft">
+                    <p class="text-light">'.theme_get_setting('footer_text').'</p>
+                </div>';
+
+                    $block['content'] .= '
+                <!-- Social icons -->
+                <div class="six columns alignright">';
+                    if(theme_get_setting('social_acc','md_magnum')) {
+                        $block['content'] .= '<p class="socials">';
+                        $social_acc = theme_get_setting('social_acc','md_magnum');
+                        foreach ($social_acc as $key => $value) {
+                            $scid = substr($key,18);
+                            $sc_icon_value = $social_acc[$key]['social_icon'];
+                            $block['content'] .= '<a href="'.$social_acc[$key]['social_link'].'" target="_blank"><i class="'.$sc_icon_value['icon'].' icon outline light"></i></a>';
+                        }
+                        $block['content'] .= '</p>';
+                    }
+                    $block['content'] .= '</div></div>
+                    <div class="row back-top">
+                        <!-- Back to top button -->
+                        <div class="twelve columns">';
+                    if(drupal_is_front_page() == TRUE ) {
+                        $block['content'] .= '<a href="'.$base_url.'/#home" class="smoothscroll "><i class="icon icon-up-open"></i></a>';
+                    }else {
+                        $block['content'] .= '<a href="#top" class="smoothscroll "><i class="icon icon-up-open"></i></a>';
+                    }
+                    $block['content'] .= '</div>
+                    </div>';
+                }
+
+                if($footer_bg_type == 'custom') {
+                    $block['content'] .= '</div></div>';
+                }
+                if($footer_bg_type == 'video') {
+                    $block['content'] .= '</div>';
+                }
+                $block['content'] .= '</section>';
+            }
+
+            if($footer_bg_type == 'global') {
+                $block['content'] .= '<!-- Social footer -->
+                <section class="nobg social-footer transparant">
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3 class="text-white margin-bottom">'.theme_get_setting('footer_social_text').'</h3>
+                        <p class="no-margin">';
+                if(theme_get_setting('social_acc','md_magnum')) {
+
+                    $social_acc = theme_get_setting('social_acc','md_magnum');
+                    foreach ($social_acc as $key => $value) {
+                        $scid = substr($key,18);
+                        $sc_icon_value = $social_acc[$key]['social_icon'];
+                        $block['content'] .= '<a href="'.$social_acc[$key]['social_link'].'" target="_blank"><i class="'.$sc_icon_value['icon'].' icon outline light"></i></a>';
+                    }
+                }
+                $block['content'] .= '
+                        </p>
+                    </div>
+                </div>
+            </section>';
+
+                $block['content'] .= '
+                <!-- Credits and bottom -->
+                <section class="nobg credits transparant">
+                    <div class="row">
+                        <div class="twelve columns">
+                            <p>'.theme_get_setting('footer_text').'</p>
+                        </div>
+                    </div>
+                </section>';
+            }
+            break;
+        case 'introduction':
+            $block['subject'] = 'Introduction Block';
+            $block['content'] = '';
+            $block['content'] .= '<section id="introduction" class="introduction"><div class="row">
+			<div class="ten columns center">';
+            $block['content'] .= '<!--The title -->
+				<div class="title">';
+            if(theme_get_setting('intro_title','md_magnum')) {
+                $block['content'] .= '<h1>'.theme_get_setting('intro_title','md_magnum').'</h1>';
+            }
+            $block['content'] .= '<hr>
+				</div>';
+            if(theme_get_setting('intro_des')) {
+                $block['content'] .= '<p class="big thin">'.theme_get_setting('intro_des','md_magnum').'</p>';
+            }
+            if(theme_get_setting('intro_button_text') && theme_get_setting('intro_button_link')) {
+                $block['content'] .= '<p><a href="'.$base_url.'/'.theme_get_setting('intro_button_link','md_magnum').'" class="button outline smoothscroll">'.theme_get_setting('intro_button_text','md_magnum').'</a></p>';
+            }
+            $block['content'] .= '</div>
+		                </div></section>';
+            break;
+    }
+    drupal_add_css($css,'inline');
+    return $block;
+}
+/*
+ * Hook_form_alter
+ */
+function md_magnum_module_form_alter(&$form, &$form_state, $form_id){
+    switch($form_id){
+        case t('menu_edit_item'):
+            $enable_menu_scroll = variable_get('enable-scroll-menu-'.$form['mlid']['#value']);
+            $menu_scrollto_path = variable_get('menu-'.$form['mlid']['#value'].'-scrollto-path');
+            $form['description']['#weight'] = '3';
+            $form['enabled']['#weight'] = '4';
+            $form['expanded']['#weight'] = '5';
+            $form['parent']['#weight'] = '6';
+            $form['weight']['#weight'] = '7';
+            $form['link_path']['#weight'] = '1';
+            $form['enable_menu_scroll'] = array(
+                '#type' => 'checkbox',
+                '#title'    => t('Enable Menu Scroll'),
+                '#description'  => t('Uncheck if you dont want to make a scroll-to-path menu'),
+                '#default_value'    => isset($enable_menu_scroll) ? $enable_menu_scroll : 1,
+                '#weight' => 2,
+            );
+            $form['jquery_scrollto_path'] = array(
+                '#type' => 'select',
+                '#title' => t('Jquery ScrollTo Path'),
+                '#description' => t('Path for Jquery ScrollTo Menu'),
+                '#default_value' => isset($menu_scrollto_path) ? $menu_scrollto_path : '',
+                '#options' => array(
+                    '#home' => t('Home'),
+                    '#work' => t('Work'),
+                    '#services' => t('Services'),
+                    '#about' => t('About'),
+                    '#contact' => t('Contact'),
+                ),
+                '#weight' => 2,
+                '#required' => TRUE,
+            );
+            $form['#submit'][] = 'md_magnum_module_menu_edit_item_form_submit_handler';
+            break;
+        case 'webform_component_edit_form':
+            if(module_exists('icon') && module_exists('fontello')) {
+                $icon_bundles = icon_bundles();
+                foreach($icon_bundles as $key => $value) {
+                    if($value['status'] == 1) {
+                        fontello_process_attached($key);
+                    }
+                }
+            }
+            $form_key = $form['form_key']['#default_value'];
+            $webform_icon = variable_get('webform_'.$form_key.'_icon');
+            $form['display']['icon'] = array(
+                '#type'         => 'icon_selector',
+                '#title'        => t('Icon'),
+                '#description'  => t('Add your custom icon display with field'),
+                '#default_bundle'        => isset($webform_icon['bundle']) ? $webform_icon['bundle'] : '',
+                '#default_icon' => $webform_icon['icon'],
+                '#weight' => 2,
+            );
+            $form['#submit'][] = 'webform_alter_submit';
+            break;
+    }
+    return $form;
+}
+/**
+ * @param $form
+ * @param $form_state
+ */
+function webform_alter_submit($form, &$form_state) {
+    $form_key = $form_state['values']['form_key'];
+    $display = $form_state['values']['display'];
+    if(isset($display)) {
+        variable_set('webform_'.$form_key.'_icon',$display['icon']);
+    }
+    cache_clear_all();
+}
+function md_magnum_form_comment_form_alter(&$form, &$form_state) {
+    if($form['is_anonymous']['#value'] == true) {
+        unset($form['actions']['preview']);
+    }
+    $form['actions']['submit']['#value'] = 'Post comment';
+    $form['actions']['submit']['#prefix'] = '<div class="controls">';
+    $form['actions']['submit']['#suffix'] = '';
+    $form['actions']['preview']['#prefix'] = '';
+    $form['actions']['preview']['#suffix'] = '</div>';
+    $form['actions']['submit']['#value'] = 'Post comment';
+    $form['actions']['submit']['#attributes']['class'] = array('btn btn-success');
+    $form['form_id']['#id'] = $form['form_id']['#id']. ' commentform';
+}
+/*
+ * Form edit menu submit handler
+ */
+function md_magnum_module_menu_edit_item_form_submit_handler($form, &$form_state){
+    variable_set('menu-'.$form_state['values']['mlid'].'-scrollto-path',$form_state['values']['jquery_scrollto_path']);
+    variable_set('enable-scroll-menu-'.$form_state['values']['mlid'],$form_state['values']['enable_menu_scroll']);
+}
+function md_magnum_module_theme_registry_alter(&$theme_registry) {
+    if(!empty($theme_registry['webform_element'])) {
+        $theme_registry['webform_element']['function'] = 'md_magnum_module_theme_webform_element';
+    }
+}
+function md_magnum_module_theme_webform_element($variables) {
+    // Ensure defaults.
+    $variables['element'] += array(
+        '#title_display' => 'before',
+    );
+    $element = $variables['element'];
+    $form_key = $element['#webform_component']['form_key'];
+    // All elements using this for display only are given the "display" type.
+    if (isset($element['#format']) && $element['#format'] == 'html') {
+        $type = 'display';
+    }
+    else {
+        $type = (isset($element['#type']) && !in_array($element['#type'], array('markup', 'textfield', 'webform_email', 'webform_number'))) ? $element['#type'] : $element['#webform_component']['type'];
+    }
+
+    // Convert the parents array into a string, excluding the "submitted" wrapper.
+    $nested_level = $element['#parents'][0] == 'submitted' ? 1 : 0;
+    $parents = str_replace('_', '-', implode('--', array_slice($element['#parents'], $nested_level)));
+
+    $wrapper_attributes = isset($element['#wrapper_attributes']) ? $element['#wrapper_attributes'] : array('class' => array());
+    $wrapper_classes = array(
+        'md-form',
+        'form-item',
+        'webform-component',
+        'webform-component-' . $type,
+    );
+    if (isset($element['#title_display']) && strcmp($element['#title_display'], 'inline') === 0) {
+        $wrapper_classes[] = 'webform-container-inline';
+    }
+    $wrapper_attributes['class'] = array_merge($wrapper_classes, $wrapper_attributes['class']);
+    $wrapper_attributes['id'] = 'webform-component-' . $parents;
+
+    $output = '<div ' . drupal_attributes($wrapper_attributes) . '>' . "\n";
+
+    // If #title_display is none, set it to invisible instead - none only used if
+    // we have no title at all to use.
+    if ($element['#title_display'] == 'none') {
+        $variables['element']['#title_display'] = 'invisible';
+        $element['#title_display'] = 'invisible';
+        if (empty($element['#attributes']['title']) && !empty($element['#title'])) {
+            $element['#attributes']['title'] = $element['#title'];
+        }
+    }
+    // If #title is not set, we don't display any label or required marker.
+    if (!isset($element['#title'])) {
+        $element['#title_display'] = 'none';
+    }
+    $icon_field = variable_get('webform_'.$form_key.'_icon');
+    $icon_render = theme('icon',$icon_field);
+    $prefix = isset($element['#field_prefix']) ? '<span class="field-prefix">' . webform_filter_xss($element['#field_prefix']) . '</span> ' : '';
+    $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . webform_filter_xss($element['#field_suffix']) . '</span>' : '';
+
+    switch ($element['#title_display']) {
+        case 'inline':
+        case 'before':
+        case 'invisible':
+            $output .= ' <div class="six columns">' . theme('form_element_label', $variables) ;
+            $output .= ' ' . $prefix .$icon_render . $element['#children'] . $suffix . '</div>' ."\n";
+            break;
+
+        case 'after':
+            $output .= ' <div class="six columns">' . $prefix .$icon_render. $element['#children'] . $suffix;
+            $output .= ' ' . theme('form_element_label', $variables) . '</div>' ."\n";
+            break;
+
+        case 'none':
+        case 'attribute':
+            // Output no label and no required marker, only the children.
+            $output .= '<div class="six columns"> '.$icon_render . $prefix . $element['#children'] . $suffix . '</div>' ."\n";
+            break;
+    }
+
+    if (!empty($element['#description'])) {
+        $output .= ' <div class="description">' . $element['#description'] . "</div>\n";
+    }
+    $output .= "</div>\n";
+    return $output;
+}
