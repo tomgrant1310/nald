@@ -186,6 +186,9 @@
     if (isset($layer['style']) && $layer['style'] != 'none') {
       $class[] = $layer['style'];
     }
+    if (isset($layer['mdtclass']) && $layer['mdtclass'] != ''){
+      $class[] = $layer['mdtclass'];
+    }
     $variables['class'] = implode(' ', $class);
 
     # Generate layer link
