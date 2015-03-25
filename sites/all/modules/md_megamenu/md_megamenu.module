@@ -403,16 +403,8 @@ function megamenu_loads($mid) {
     # Add js to control mega-menu
     $megamenujs = '(function($) {
   $(document).ready(function(){
-	  var option = Drupal.settings.mmoptions_' . $mid . ';
+    var option = Drupal.settings.mmoptions_' . $mid . ';
     ';
-
-    if (in_array('dmg_responsive', $menu->settings['general']['dm_right'])) {
-        $megamenujs .= "selectnav('mdmegamenu-" . $mid . "', {
-					label: '" . t('--- Table of content ---') . "',
-					nested: true,
-					indent: '-'
-			 });";
-    }
     $megamenujs .= '$("#megamenu-' . $mid . ' > ul").megadrupalMenu(option);
       }); })(jQuery);';
     drupal_add_js($megamenujs, 'inline');

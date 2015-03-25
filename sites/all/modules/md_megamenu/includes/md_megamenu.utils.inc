@@ -146,6 +146,7 @@ function md_megamenu_get_vimeo_id_from_url($url) {
 
 function generate_menu_css_configure($mid, $menu_settings) {
   $design = $menu_settings['design'];
+  $responsive = $menu_settings['responsive'];
   $css_content = "";
 
   # generate css for top level config
@@ -188,7 +189,8 @@ function generate_menu_css_configure($mid, $menu_settings) {
 
   # Generate css for custom height
   if (!$menu_settings['general']['dmg_fullwidth'] && $menu_settings['general']['dmg_customwidth'] != '') {
-    $css_content .= "#megamenu-{$mid} {width: {$menu_settings['general']['dmg_customwidth']}px}";
+    $css_content .= "@media (min-width: {$menu_settings['responsive']['res_width']}px) {";
+    $css_content .= "#megamenu-{$mid} {width: {$menu_settings['general']['dmg_customwidth']}px} \n}";
   }
 
   # Generate css for custom height
@@ -217,10 +219,12 @@ function generate_menu_css_configure($mid, $menu_settings) {
 
   # Css for vertical menu
   if ($menu_settings['general']['dmg_orientation'] == 'vertical' &&  $menu_settings['general']['dmg_submenuw'] != '') {
-    $css_content .= "#megamenu-" . $mid . ".md-vertical ul.megamenu {width: " . $menu_settings['general']['dmg_submenuw'] . "px}\n";
+    $css_content .= "@media (min-width: {$menu_settings['responsive']['res_width']}px) {";
+    $css_content .= "#megamenu-" . $mid . ".md-vertical ul.megamenu {width: " . $menu_settings['general']['dmg_submenuw'] . "px}\n }";
     if ($menu_settings['design']['top_dms_bgc'] != "") {
       $css_content .= "#megamenu-" . $mid . ".md-vertical ul.megamenu > li {background-color: #" . $menu_settings['design']['top_dms_bgc'] . "}";
     }
+
   }
 
   # Generate css for fix menu
@@ -247,6 +251,8 @@ function generate_menu_css_configure($mid, $menu_settings) {
   # Add custom css
   $css_content .= $menu_settings['design']['dms_custom'];
 
+  # Add custom responsive
+  $css_content .= '#megamenu-'.$mid.' .mdtoggle-nav{color:  #'.$responsive['res_text_color'].'; background: #'.$responsive['res_bar_color'].';}';
   # Create file custom css for menu
   $public_folder = variable_get('file_public_path', conf_path() . '/files');
   file_put_contents($public_folder . '/megamenu-' . $mid . '-custom.css', $css_content);
