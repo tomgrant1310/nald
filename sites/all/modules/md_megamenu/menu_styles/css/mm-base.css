@@ -354,7 +354,7 @@ ul.mm-container li {
 	width: 100%
 }
 .mdmegamenu ul.megamenu > li {
-	display: inline;
+	display: inline; 
 	float: left;
 }
 .mm-item > a {
@@ -418,11 +418,11 @@ ul.mm-container li {
 	right: 14px;
 	top: 50%;
 }
-.mm-hover .mm-arrow {
+.mm-hover .mm-arrow { 
 	background-position: 0 -3px;
 }
 ul.mm-container li .mm-arrow,
-.md-vertical .mm-arrow {
+.md-vertical .mm-arrow { 
 	background-position: -13px 0;
 	width: 3px;
 	height: 6px;
@@ -432,19 +432,19 @@ ul.mm-container li .mm-arrow,
 	right: auto;
 	left: 10px;
 }
-ul.mm-container a:hover .mm-arrow {
+ul.mm-container a:hover .mm-arrow { 
 	background-position: -16px 0
 }
-.md-vertical-rtl ul.mm-container a:hover .mm-arrow {
+.md-vertical-rtl ul.mm-container a:hover .mm-arrow { 
 	background-position: -25px 0
 }
 .md-withdesc .mm-arrow {
     top: 36%;
 }
-.md-vertical .mm-hover .mm-arrow {
+.md-vertical .mm-hover .mm-arrow { 
 	background-position: -19px 0
 }
-.md-vertical-rtl .mm-hover .mm-arrow {
+.md-vertical-rtl .mm-hover .mm-arrow { 
 	background-position: -22px 0
 }
 .mm-fixed-bottom .mm-arrow {
@@ -594,7 +594,7 @@ ul.mm-container a:hover .mm-arrow {
 .mm-sub .withmargin .inner {padding: 0 10px; margin: 20px 0}
 
 /* Drupal stuff */
-.mm-container input.form-text,
+.mm-container input.form-text, 
 .mm-container textarea.form-textarea {
 	padding: 2px 4px;
 	width: 100%;
@@ -645,209 +645,14 @@ ul.mm-container a:hover .mm-arrow {
     display: none;
 }
 
-/* Responsive */
-
-
-.mdmegamenu.mm-responsive {
-  display: block;
-}
-.mdmegamenu.mm-responsive .megamenu {
-  display: none;
-  width: 100%;
-}
-.mdmegamenu.mm-responsive ul:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-.mdmegamenu.mm-responsive ul.megamenu > li {
-  position: relative;
-  display: block;
-  float: none;
-  padding: 0 !important;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-}
-.mdmegamenu.mm-responsive li > a {
-  float: none;
-  display: block;
-  border: 0 !important;
-  padding: 0 15px !important;
-  line-height: 41px !important;
-}
-.mdmegamenu.mm-responsive li.mm-hover > a,
-.mdmegamenu.mm-responsive li.mm-hover > a:link,
-.mdmegamenu.mm-responsive li.mm-hover > a:visited,
-.mdmegamenu.mm-responsive ul.mm-container .mm-active > a,
-.mdmegamenu.mm-responsive ul.mm-container .mm-active > a:link,
-.mdmegamenu.mm-responsive ul.mm-container .mm-active > a:visited {
-
-}
-
-.mdmegamenu.mm-responsive .mm-container {
-  position: static;
-  float: none;
-  width: auto !important;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.mdmegamenu.mm-responsive .mm-container .mm-container {
-  display: block !important;
-  height: auto !important;
-  padding-left: 10px !important;
-}
-.md-dropshadow li.mm-hover {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
-.mdmegamenu.mm-responsive .mm-sub .inner {
-  margin: 0;
-}
-.mdtoggle-nav {
-  position: relative;
-  display: block;
-  font-size: 13px;
-  font-weight: normal;
-  color: #fff;
-  text-transform: uppercase;
-  padding: 0 15px;
-  line-height: 47px;
-  cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all .3s ease;
-     -moz-transition: all .3s ease;
-      -ms-transition: all .3s ease;
-       -o-transition: all .3s ease;
-          transition: all .3s ease;
-}
-.mdtoggle-nav:after {
-  content: '';
-  display: block;
-  position: absolute;
-  background: url(../images/mm-toggle-menu.png) no-repeat 50% 50%;
-  top: 0;
-  right: 3px;
-  width: 41px;
-  height: 47px;
-}
-.mdtoggle-nav.rp-active,
-.mdtoggle-nav:hover {
-  background-color: rgba(255,255,255,.15);
-}
-.mdtoggle-sub {
-  display: none;
-  position: absolute;
-  background: url(../images/mm-toggle-sub.png) no-repeat 50% 50%;
-  margin: auto;
-  top: 8px;
-  right: 10px;
-  width: 25px;
-  height: 25px;
-  z-index: 999;
-  cursor: pointer;
-  background-color: rgba(255,255,255,.2);
-  border-radius: 3px;
-  -webkit-transition: all .3s ease;
-     -moz-transition: all .3s ease;
-      -ms-transition: all .3s ease;
-       -o-transition: all .3s ease;
-          transition: all .3s ease;
-}
-.mdtoggle-sub:hover {
-  background-color: rgba(255,255,255);
-}
-.mdmegamenu.mm-responsive .mdtoggle-sub{
-  display: block;
-}
-.mdmegamenu.mm-responsive .mm-arrow {
-  display: none;
-}
-
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_1,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_2,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_3,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_4,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_5,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_6,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_7,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_8,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_9,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_10,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_11,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_12,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_13,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_14,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_15,
-#megamenu-2.md-vertical.md-style2.mm-responsive .mmg_16,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_1,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_2,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_3,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_4,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_5,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_6,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_7,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_8,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_9,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_10,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_11,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_12,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_13,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_14,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_15,
-#megamenu-3.md-vertical.md-style2.mm-responsive .mmg_16 {
-  width: 100%;
-  display: block;
-  float: none;
-}
-
-
-@media screen and (max-width: 640px) {
-  .mdmegamenu.mm-responsive .mmg_1,
-  .mdmegamenu.mm-responsive .mmg_2,
-  .mdmegamenu.mm-responsive .mmg_3,
-  .mdmegamenu.mm-responsive .mmg_4,
-  .mdmegamenu.mm-responsive .mmg_5,
-  .mdmegamenu.mm-responsive .mmg_6,
-  .mdmegamenu.mm-responsive .mmg_7,
-  .mdmegamenu.mm-responsive .mmg_8,
-  .mdmegamenu.mm-responsive .mmg_9,
-  .mdmegamenu.mm-responsive .mmg_10,
-  .mdmegamenu.mm-responsive .mmg_11,
-  .mdmegamenu.mm-responsive .mmg_12,
-  .mdmegamenu.mm-responsive .mmg_13,
-  .mdmegamenu.mm-responsive .mmg_14,
-  .mdmegamenu.mm-responsive .mmg_15,
-  .mdmegamenu.mm-responsive .mmg_16 {
-    display: block;
-    width: 100%;
-    float: none;
-  }
-  .mdmegamenu.mm-responsive .mm-sub .inner {
-    overflow: hidden;
-  }
-
-}
-
-
-.selectnav {
-  display: none !important;
-}
-
-/*Minh Chinh Css*/
-
-.mm-dropdown > ul.mm-container.contrary {
-    left : auto !important;
-    right: 0 !important;
-}
-.mm-dropdown > ul.mm-container ul.mm-container.contrary {
-    left : 0 !important;
-    transform: translateX(-100%) !important;
-}
-.mm-dropdown ul li.mm-parent.contrary > ul.mm-container {
-top: 0;
-left: -220px;
+@media screen and (max-width: 600px) {
+    .js .megamenu {
+        display: none;
+    }
+    .js .selectnav {
+        display: block;
+        clear: both;
+        margin: 0;
+        width: 90%
+    }
 }

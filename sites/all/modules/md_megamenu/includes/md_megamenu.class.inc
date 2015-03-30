@@ -191,12 +191,6 @@ class MDMegaMenu {
             'dmg_position' => 'center_bottom',
             'dm_right' => array('dmg_responsive', 'dmg_pushing', 'dmg_clickoutside', ),
         ),
-        'responsive' => array(
-          'res_width' => '640',
-          'res_text' => 'Menu',
-          'res_text_color' => '',
-          'res_bar_color' => '',
-        ),
         'animation' => array(
             'dma_animation' => 'slide',
             'dma_trigger' => 'hover_intent',

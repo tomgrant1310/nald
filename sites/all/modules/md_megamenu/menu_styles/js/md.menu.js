@@ -12,8 +12,7 @@
             var self = $(this),
                 menuWidth = self.outerWidth(true);
             var fullwidth = self.width();
-            if (self.hasClass("md-vertical")) {
-                // vertical menu
+            if (self.hasClass("md-vertical")) {  // vertical menu
                 // Right to left
                 if (self.hasClass("md-vertical-rtl")) {
                     var ulwidth = $('> ul', self).width();
@@ -39,8 +38,7 @@
                     } else {
                         $('div.mm-fullwidth', self).width(fullwidth);
                     }
-                }
-                else {
+                } else {
                     // Left to right
                     var ulwidth = $('> ul', self).width();
                     var ulleft = $('> ul', self).offset().left;
@@ -67,8 +65,7 @@
                     }
                 }
 
-            }
-            else {
+            } else {
                 if(self.hasClass('mm-fixed-bottom')) {
                     _tmpheight = self.outerHeight() - parseInt(self.css('borderTopWidth')) - parseInt(self.css('borderBottomWidth'));
                     $('> ul > li', self).each(function() {
@@ -111,6 +108,8 @@
                 });
             }
 
+
+
             $("div.mm-sub", self).each(function() {
                 var cols = $(this).children(".background-color").not(".mmg_12");
                 $(cols).each(function() {
@@ -126,79 +125,21 @@
                     mmcontainer.hide();
                 });
             });
-
-            // Long Đập Trai
-            var typeMenu = self.data('type-responsive'),
-                $listmm = self.find('.megamenu'),
-                $toggleNav = $('.mdtoggle-nav', self),
-                widthScreen = window.innerWidth;
-
-            if (!self.hasClass('md-horizontal')){
-                $('.mm-container', self).css({left :  ''});
-            }
-            if (window.innerWidth <= typeMenu) {
-                var widthList = $listmm.width();
-                $toggleNav.show();
-                self.addClass('mm-responsive');
-            }
-            else {
-                $toggleNav.hide();
-                $listmm.css('display', '');
-                self.removeClass('mm-responsive');
-            }
-
-            // Process Menu Dropdown
-//            $('.megamenu >.mm-dropdown', self).css('position', 'relative');
-            $.each($('.megamenu >.mm-dropdown >ul.mm-container', self), function(){
-                $('.contrary', self).removeClass('contrary');
-                var first = true;
-                processSubContainer($(this), first);
-            });
-            function processSubContainer ($container, first) {
-                if (!$container.length)
-                    return true;
-
-                $container.css({
-                    display: 'block',
-                    opacity: 0
-                });
-                var width = $container.outerWidth(),
-                    left = $container.offset().left;
-
-                if (width + left > widthScreen){
-                    $container.addClass('contrary');
-                    if (first)
-                        $container.closest('.mm-item.mm-dropdown').css('position', 'relative');
-                }
-
-                processSubContainer($('>.mm-parent >.mm-container', $container));
-                $('ul.mm-container', self).css({
-                    display: '',
-                    opacity: ''
-                });
-            }
         });
     });
 
     $.fn.megadrupalMenu = function(options){
-        var self = this,
-            $mdmegamenu = self.parent(),
-            typeMenu = $mdmegamenu.data('type-responsive'),
-            maxWidthMenu = 1000;
         function megaOver(){
-            if (window.innerWidth > typeMenu)
-                megaAction(this);
+            megaAction(this);
         }
         function megaOut(){
-            if (window.innerWidth > typeMenu)
-                megaActionClose(this);
+            megaActionClose(this);
         }
-        
+
         function megaReset(megaMenu){
             $('li', megaMenu).removeClass('mm-hover');
             $('.mm-container', megaMenu).hide();
         }
-
         function megaAction(obj){
             var $dropDown = $('> .mm-container', obj);
             $(obj).parents(".mdmegamenu").find(".mm-container").not($(obj).parents(".mm-container")).hide();
@@ -274,6 +215,7 @@
                 })
             }
 
+
             menuItem.each(function() {
                 var self = $(this);
                 if(opts.arrow) {
@@ -341,67 +283,7 @@
                     $(this).find(".mm-arrow").show();
                 });
             }
-            
-            // Add Events Anh Long Đập Trai
-            $('.mdtoggle-nav', $mdmegamenu).hide().click(function(){
-                $(this).toggleClass('rp-active');
-                self.slideToggle(600);
-            });
-            $mdmegamenu.delegate('.mdtoggle-sub', 'click', function () {
-                if (window.innerWidth <= typeMenu) {
-                    $(this).nextAll('.mm-container').slideToggle(1000);
-                }
-            });
             $(window).resize();
-
         });
     };
-    $.megaCheckItemContrary = function ($parent, $mmcontainer, maxWidth){
-            if (!$mmcontainer.length)
-                return true;
-            $mmcontainer.css({
-                display: 'block',
-                opacity: 0
-            });
-            setTimeout(function(){
-                $mmcontainer.css({
-                    'display' : '',
-                    'opacity' : ''
-                });
-            },100);
-            var offsetLeft = $mmcontainer.offset().left,
-                width = $mmcontainer.outerWidth(),
-                $subContainer = $('>li.mm-parent >ul.mm-container', $mmcontainer);
-            if (offsetLeft + width > window.innerWidth){
-                $mmcontainer.addClass('contrary');
-                // $mmcontainer.data('offset-left', offsetLeft - width);
-            }
-            // else {
-            //     $mmcontainer.data('offset-left', width + offsetLeft);
-            // }
-            $.megaCheckItemContrary($mmcontainer, $subContainer, maxWidth);
-        }
-
-    $.megaCheckContrary = function(self) {
-             $('.contrary', self).removeClass('contrary');
-            var maxWidth = self.width(),
-                $mdmegamenu = self.parent();
-
-            $.each($('>.mm-item', self), function(){
-                var $mmcontainer = $(' >ul.mm-container', this),
-                    offsetLeft = 0;
-                if ($mdmegamenu.hasClass('md-horizontal')){
-                    $.each($(this).prevAll(), function(){
-                        offsetLeft += $(this).outerWidth();
-                    })
-                }
-                else {
-                    offsetLeft = $(this).outerWidth();
-                }
-                $(this).data('offset-left', offsetLeft);
-
-                $.megaCheckItemContrary($(this), $mmcontainer, maxWidth)
-            });
-        }
 })(jQuery);
-
