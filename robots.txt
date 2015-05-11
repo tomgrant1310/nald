@@ -13,8 +13,7 @@
 # For more information about the robots.txt standard, see:
 # http://www.robotstxt.org/robotstxt.html
 
-User-agent: 
-Disallow: /
+User-agent: *
 Crawl-delay: 10
 # Directories
 Disallow: /includes/
