@@ -35,7 +35,7 @@ function animate_css_libraries_info() {
     'vendor url' => 'http://daneden.me/animate/',
     'download url' => 'https://github.com/daneden/animate.css/archive/master.zip',
     'version arguments' => array(
-      'file' => 'bower.json',
+      'file' => 'package.json',
       'pattern' => '/((?:\d+\.?){2,3})/',
     ),
     'files' => array(
