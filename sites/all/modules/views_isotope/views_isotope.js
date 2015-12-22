@@ -8,7 +8,15 @@
     attach:function(context, settings)
     {
       // Pre-select first option in option sets.
-      $('.isotope-options.option-set li:first-child a').addClass('selected');
+      $('.isotope-options > li:first-child > a').addClass('selected');
+
+      // Use imagesLoaded if it is available.
+      if (typeof imagesLoaded !== 'undefined') {
+        var container = document.querySelectorAll('.isotope-container');
+        imagesLoaded( container, function() {
+          $('.isotope-container').isotope('layout');
+        });
+      }
 
       // Store filter for each group.
       var filters = {};
@@ -21,7 +29,7 @@
         }
 
         // Identify what has been clicked.
-        var $optionSet = $this.parents('.option-set');
+        var $optionSet = $this.parents('.isotope-options');
         var filterGroup = $optionSet.attr('data-filter-group');
         var instanceID = $optionSet.attr('data-instance-id');
 
@@ -30,11 +38,11 @@
 
         // Find all identical optionSets.
         if (typeof instanceID != 'undefined') {
-          var $optionSets = $(".option-set[data-filter-group='" + filterGroup + "'][data-instance-id='" + instanceID + "']");
+          var $optionSets = $(".isotope-options[data-filter-group='" + filterGroup + "'][data-instance-id='" + instanceID + "']");
           var $container = $('#' + instanceID);
         }
         else {
-          var $optionSets = $(".option-set[data-filter-group='" + filterGroup + "']");
+          var $optionSets = $(".isotope-options[data-filter-group='" + filterGroup + "']");
           // If no instance is set, the filter should apply to all instances.
           var $container = $('.isotope-container');
         }
@@ -65,16 +73,16 @@
         }
 
         // Identify what has been clicked.
-        var $optionSet = $this.parents('.option-set');
+        var $optionSet = $this.parents('.isotope-options');
         var instanceID = $optionSet.attr('data-instance-id');
 
         // Find all identical optionSets.
         if (typeof instanceID != 'undefined') {
-          var $optionSets = $(".option-set.sorts[data-instance-id='" + instanceID + "']");
+          var $optionSets = $(".isotope-options.sorts[data-instance-id='" + instanceID + "']");
           var $container = $('#' + instanceID);
         }
         else {
-          var $optionSets = $(".option-set.sorts");
+          var $optionSets = $(".isotope-options.sorts");
           // If no instance is set, the filter should apply to all instances.
           var $container = $('.isotope-container');
         }

@@ -94,17 +94,31 @@ function template_preprocess_views_isotope_views_sorter(&$vars) {
  *   Value.
  */
 function views_isotope_views_helper_get_field_value($entity, $fieldname) {
-  if (!empty($entity->{'field_' . $fieldname}[0])) {
-    $field = $entity->{'field_' . $fieldname}[0]['rendered'];
+  if (!empty($entity->{'field_' . $fieldname})) {
+    foreach($entity->{'field_' . $fieldname} as $a) {
+      if(!empty($a['rendered'])) {
+        $field[] = $a['rendered'];
+      }
+    }
   }
   elseif (!empty($entity->{'taxonomy_term_data_' . $fieldname})) {
     // Term title is not a real field in D7.
-    $field = $entity->{'taxonomy_term_data_' . $fieldname};
+    $field[$fieldname] = $entity->{'taxonomy_term_data_' . $fieldname};
   }
 
   if (isset($field)) {
-    $filter_value = render($field);
-    return trim(check_plain(strip_tags($filter_value)));
+    $r = array();
+    if(!is_array($field)) {
+      $field = array($field);
+    }
+    foreach($field as $f) {
+      $filter_value = render($f);
+      $r[] = trim(check_plain(strip_tags($filter_value)));
+    }
+    if(count($r) == 1){
+      return $r[0];
+    }
+    return $r;
   }
 
   return '';

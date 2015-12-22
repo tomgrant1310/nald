@@ -35,6 +35,7 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
 
   $ajax_layout_mode = '';
 
+  $libraries = views_isotope_additional_libraries_list();
   $detected_libraries = views_isotope_check_additional_libraries();
 
   $layouts_included = array(
@@ -43,20 +44,12 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
     'vertical' => t('vertical'),
   );
 
-  $layouts_not_included = array(
-    'cellsByRow' => t('cellsByRow'),
-    'packery' => t('packery'),
-    'masonryHorizontal' => t('masonryHorizontal'),
-    'fitColumns' => t('fitColumns'),
-    'cellsByColumn' => t('cellsByColumn'),
-    'horizontal' => t('horizontal'),
-  );
-
-  $plugins = array(
-    'imagesLoaded' => t('imagesLoaded'),
-    'bbq' => t('BBQ.js'),
-    'infiniteScroll' => t('infiniteScroll'),
-  );
+  $layouts_not_included = array();
+  foreach ($libraries as $lib_name => $library) {
+    if ($library['type'] == 'layout') {
+      $layouts_not_included[$lib_name] = $lib_name;
+    }
+  }
 
   $form['layoutMode'] = array(
     '#type' => 'radios',
@@ -74,11 +67,18 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
     }
   }
 
+  $plugins = array();
+  foreach ($libraries as $lib_name => $library) {
+    if ($library['type'] == 'plugin') {
+      $plugins[$lib_name] = $lib_name;
+    }
+  }
+
   $form['plugins'] = array(
     '#type' => 'checkboxes',
     '#options' => $plugins,
     '#title' => t('Additional Plugins'),
-    '#description' => t('If desired options are disabled, you may need to install additional JS libraries. Refer to installation instructions.'),
+    '#description' => t('If desired options are disabled, you may need to install additional JS libraries.'),
     '#default_value' => ($config->plugins) ? $config->plugins : array(),
     '#required' => FALSE,
     '#tree' => TRUE,
@@ -154,6 +154,35 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
       '#description' => t('Aligns items vertically. 0 will align the origin edge. 1 will align the opposite edge. 0.5 will align center.'),
       '#default_value' => $config->verticalAlignment,
       '#required' => FALSE,
+    );
+  }
+
+  foreach ($libraries as $lib_name => $library) {
+    if (!in_array($lib_name, $detected_libraries)) {
+      $lib_link = l($lib_name, $library['url']);
+      $lib_path = libraries_get_path($lib_name);
+      $lib_path = !empty($lib_path) ? $lib_path : libraries_get_path('isotope');
+      if (empty($lib_path)) {
+        if ($library['type'] == 'plugin') {
+          $lib_path = 'libraries/' . $lib_name;
+        }
+        if ($library['type'] == 'layout') {
+          $lib_path = 'libraries/isotope';
+        }
+      }
+      $lib_path .= '/' . $library['filename'];
+      $item = '<strong>' . $lib_link . '</strong><br />';
+      $item .= '<em>' . t('Install into: ') . $lib_path . '</em><br />';
+      $item .= $library['description'];
+      $items[] = $item;
+    }
+  }
+  if (!empty($items)) {
+    $form['instructions'] = array(
+      '#title' => t('Installing Additional Plugins'),
+      '#theme' => 'item_list',
+      '#type' => 'ul',
+      '#items' => $items,
     );
   }
 }

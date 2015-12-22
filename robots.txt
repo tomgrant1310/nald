@@ -14,6 +14,9 @@
 # http://www.robotstxt.org/robotstxt.html
 
 User-agent: *
+
+Disallow: /
+
 Crawl-delay: 10
 # Directories
 Disallow: /includes/

@@ -112,11 +112,13 @@ function views_isotope_requirements($phase) {
     // sites/all/libraries folder report a warning. The module will fall back to
     // its included copy so this isn't a showstopper.
     if (function_exists('libraries_get_path') && $isotope_scope == 'cdn') {
+      $path = libraries_get_path('isotope');
+      $path = !empty($path) ? $path : 'libraries/isotope';
       $requirements['isotope']['value'] = t('Isotope is not correctly using Libraries API');
       $requirements['isotope']['severity'] = REQUIREMENT_WARNING;
       $requirements['isotope']['description'] = t('Please install <a href="http://isotope.metafizzy.co/">Isotope</a> in <strong>%path</strong>. The module is using an external copy from %cdn',
         array(
-          '%path' => libraries_get_path('isotope') . '/' . VIEWS_ISOTOPE_FILENAME,
+          '%path' => $path . '/' . VIEWS_ISOTOPE_FILENAME,
           '%cdn' => VIEWS_ISOTOPE_CDN_PATH,
         )
       );

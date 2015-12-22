@@ -1,3 +1,8 @@
+/**
+ * @file
+ * CSS for the provided examples.
+ */
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -48,41 +53,53 @@
 
 /* ---- button-group ---- */
 
-ul.option-set {
+ul.isotope-options {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-ul.option-set li {
+ul.isotope-options li {
   float: left;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.option-set:after {
+.isotope-options:after {
   content: '';
   display: block;
   clear: both;
 }
 
-.option-set .filterbutton,
-.option-set .sorterbutton {
+.isotope-options .filterbutton,
+.isotope-options .sorterbutton {
   float: left;
   border-radius: 0;
   margin-left: 0;
   margin-right: 1px;
 }
 
-.option-set li:first-child .filterbutton,
-.option-set li:first-child .sorterbutton {
+.isotope-options li:first-child .filterbutton,
+.isotope-options li:first-child .sorterbutton {
   border-radius: 0.5em 0 0 0.5em;
 }
 
-.option-set li:last-child .filterbutton,
-.option-set li:last-child .sorterbutton {
+.isotope-options li:last-child .filterbutton,
+.isotope-options li:last-child .sorterbutton {
   border-radius: 0 0.5em 0.5em 0;
+}
+
+.item-list ul.isotope-options {
+  list-style: none;
+  display: inline-block;
+  margin-right: 20px;
+  padding: 0;
+}
+
+.item-list ul.isotope-options li {
+  padding: 0;
+  margin: 0;
 }
 
 /* ---- isotope ---- */
@@ -103,20 +120,6 @@ ul.option-set li {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-/* isotope-options */
-
-.item-list ul.isotope-options {
-  list-style: none;
-  display: inline-block;
-  margin-right: 20px;
-  padding: 0;
-}
-
-.item-list ul.isotope-options li {
-  padding: 0;
-  margin: 0;
 }
 
 
