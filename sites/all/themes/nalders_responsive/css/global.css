@@ -632,6 +632,14 @@ zone-preface img {
       .navigation .second-menu ul li a:hover {
         color: #999999; }
 
+@media screen and (min-width: 592px) and (max-width: 894px) {
+  .mm-item {
+    margin-left:0px;
+  }
+}
+
+
+
 .zone-menu .block-menu {
   display: block;
   font-size: 1em;
