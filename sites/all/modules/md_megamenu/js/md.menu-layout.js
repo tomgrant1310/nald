@@ -1,1 +1,302 @@
-(function(e){var t=Drupal.styleHtml;var n={init:function(){e(".el-block").live({mouseenter:function(){e(this).addClass("el-hover")},mouseleave:function(){e(this).removeClass("el-hover")}});e('#mni-layout input[name="column_grid"]').change(function(){var t=e("#mni-layout input:radio:checked").val()||12;var r=[];r["isFull"]=true;r["subWidth"]="";n.applyNumCol(t,n.getConfigObject("[[24,24],[48]]"),r)}).change();e("#itemcolumn div.item").click(function(){e("#el-gen").html("");n.getLayoutHtml(n.getConfigObject(e(this).attr("value")))});e("#el-gen").sortable({handle:"a.handle",revert:false,placeholder:"ui-state-highlight",items:"div.el-row"});e("#layout_newrow").click(function(){var t=e("#mni-layout input:radio:checked").val();n.getLayoutHtml(n.getConfigObject("[[48]]"));return false});e("#layout_save").click(function(){var t=[];e("#el-gen .el-row").each(function(){var r=[];e(this).find(".el-block").each(function(){r.push(n.extractColNum(e(this)))});t.push(r)});alert(e.objectToString(t))});e(".el-delete").live("click",function(){var t=e(this).parent();var r=n.extractColNum(t);if(r>0&&r<12){var i=t.next("div.el-block");var s=n.extractColNum(i);if(!n.updateColNum(i,s+r)){var o=t.prev("div.el-block");var u=n.extractColNum(o);n.updateColNum(o,u+r)}t.remove()}else{e(this).parent().parent().remove()}return false});t.appendTo(document.body).hide();e("input.color-picker",t).ColorPicker({onSubmit:function(t,n,r,i){e(i).val(n);e(i).ColorPickerHide()},onBeforeShow:function(){current_obj=this;e(this).ColorPickerSetColor(this.value)},onChange:function(t,n,r){e(current_obj).val(n)}}).bind("keyup",function(){e(this).ColorPickerSetColor(this.value)});e("a.btn_save",t).click(function(){var r=n.getStyleHtmlVal();parent=t.data("item");parent.children("input.setting").val(e.objectToString(r));t.hide();return false});e("a.btn_cancel",t).click(function(){t.hide();return false});e(".el-style, .el-globalstyle").live("click",function(){var r=e(this).offset();var i=e(this).parent();var s=i.children("input.setting").val();n.setStyleHtmlVal(e.stringToObject(s));t.data("item",i).css({top:r.top+19,left:r.left-13}).show();return false});e(".el-split").live("click",function(){var t=e(this).parent();var r=t.parent();var i=n.extractColNum(t);if(i>1){var s=Math.floor(i/2);var o=i-s;n.updateColNum(t,o);t.after(n.getColTemplate(s))}return false});e(".el-wider").live("click",function(){var t=e(this).parent();var r=t.next("div.el-block");if(n.shortenCol(r,"next")){var i=n.extractColNum(t);n.updateColNum(t,++i)}return false});e(".el-shorten").live("click",function(){var t=e(this).parent();var r=t.prev("div.el-block");if(n.shortenCol(r,"prev")){var i=n.extractColNum(t);n.updateColNum(t,++i)}return false})},getLayoutConfig:function(){var t=[];var r=n.extractColNum(e("#el-gen"));var i=n.extractFullWidth();e("#el-gen .el-row").each(function(){var i=[];e(this).find(".el-block").each(function(){i.push({style:e.stringToObject(e(this).children("input.setting").val()),length:n.extractColNum(e(this))*48/r})});t.push({style:e.stringToObject(e(this).children("input.setting").val()),cols:i})});return{numCol:r,setting:t,isFullWidth:i["isFull"],subWidth:i["subWidth"]}},applyLayoutConfig:function(e){var t=[];t["isFull"]=e.isFullWidth;t["subWidth"]=e.subWidth;n.applyNumCol(e.numCol,e.setting,t)},shortenCol:function(e,t){if(e!=null&&e.length>0){var r=n.extractColNum(e);if(r>1){n.updateColNum(e,--r);return true}else{if(t=="next"){return n.shortenCol(e.next("div.el-block"),t)}else{return n.shortenCol(e.prev("div.el-block"),t)}}}return false},updateColNum:function(e,t){if(t>0&&t<13&&e!=null&&e.length>0){e.removeClass("mmg_1 mmg_2 mmg_3 mmg_4 mmg_5 mmg_6 mmg_7 mmg_8 mmg_9 mmg_10 mmg_11 mmg_12 mmg_13 mmg_14 mmg_15 mmg_16");e.addClass("mmg_"+t);return true}return false},extractSpanNum:function(t){var n,r,i;n=e(t).attr("class"),r=n.split(/\s+/);for(i=0;i<r.length;i+=1)if(r[i].match(/^mmg_/))return r[i].split("_")[1]},extractColNum:function(e){var t;if(e!=null&&e.length>0){t=e.attr("class").match(/\d+/)}t=t?parseInt(t[0]):0;return t},extractFullWidth:function(){var t=[];t["isFull"]=e("#submnu_full_width").is(":checked");t["subWidth"]="";if(!t["isFull"]&&!isNaN(parseInt(e("#mnu_subwid").val()))){t["subWidth"]=e("#mnu_subwid").val()}return t},getColTemplate:function(t,n){var r=e('<div class="el-block mmg_'+t+'">'+'<a href="#" class="el-delete" title="Delete this column"></a>'+'<a href="#" class="el-style" title="Change column style"></a><input type="hidden" class="setting" value="" autocomplete="off" />'+'<a href="#" class="el-split" title="Split column"></a>'+'<a href="#" class="el-wider" title="Make this column wider"></a>'+'<a href="#" class="el-shorten" title="Make this column shorten"></a>'+"</div>");r.children("input.setting").val(e.objectToString(n));return r.clone()},getLayoutHtml:function(t){var r=n.extractColNum(e("#el-gen"));t=typeof t=="string"?e.stringToObject(t):t;if(t.length>0){for(var i=0;i<t.length;i++){var s=t[i];row=e('<div class="el-row"><a href="#" class="handle"></a><a href="#" class="el-globalstyle" title="Change row style"></a><input type="hidden" class="setting" value="" autocomplete="off" /></div>');row.children("input.setting").val(e.objectToString(s.style));cols=s.cols;if(cols!=undefined){var o=0;for(var u=0;u<cols.length-1;u++){var a=parseInt(cols[u].length*r/48);o+=a;if(o<r){row.append(n.getColTemplate(a,cols[u].style))}}if(o<r){row.append(n.getColTemplate(r-o,cols[cols.length-1].style))}}e("#el-gen").append(row)}}},applyNumCol:function(t,r,i){e('input:radio[name="column_grid"][value="'+t+'"]').attr("checked",true);e("#submnu_full_width").attr("checked",i["isFull"]);e("#mnu_subwid").val(i["subWidth"]);e("#el-gen").removeClass("fluid_mmcontainer_12 fluid_mmcontainer_16").addClass("fluid_mmcontainer_"+t);e("#el-gen").html("");n.getLayoutHtml(r)},setStyleHtmlVal:function(n){n=e.extend({elsmargin:false,elsbackground:"",elsborderw:"",elsborders:"",elsborderc:""},n);e('input[name="els-margin"]',t).attr("checked",n.elsmargin),e('input[name="els-background"]').val(n.elsbackground);e('input[name="els-borderw"]').val(n.elsborderw);e('select[name="els-borders"]').val(n.elsborders);e('input[name="els-borderc"]').val(n.elsborderc)},getConfigObject:function(t){var n=[];var r=e.stringToObject(t);for(var i=0;i<r.length;i++){rowSetting={style:null,cols:[]};for(var s=0;s<r[i].length;s++){rowSetting.cols.push({style:null,length:r[i][s]})}n.push(rowSetting)}return n},getStyleHtmlVal:function(){return{elsmargin:e('input[name="els-margin"]',t).is(":checked")?true:false,elsbackground:e('input[name="els-background"]').val(),elsborderw:e('input[name="els-borderw"]').val(),elsborders:e('select[name="els-borders"]').val(),elsborderc:e('input[name="els-borderc"]').val()}}};Drupal.menuLayout=n})(jQuery)
+(function($) {
+	var styleHtml = Drupal.styleHtml;
+	var mdMenuLayout = {
+		    init: function() {
+				$(".el-block").live({
+					mouseenter: function() {
+						$(this).addClass('el-hover');
+					},
+					mouseleave: function() {
+						$(this).removeClass('el-hover');
+					}
+				});
+				$('#mni-layout input[name="column_grid"]').change(function() {
+					var column = $('#mni-layout input:radio:checked').val() || 12;
+					var fullWidth = [];
+					fullWidth["isFull"] = true;
+					fullWidth['subWidth'] = "";
+					mdMenuLayout.applyNumCol(column, mdMenuLayout.getConfigObject("[[24,24],[48]]"), fullWidth);
+				}).change();
+				
+				$('#itemcolumn div.item').click(function() {
+					$("#el-gen").html("");
+					mdMenuLayout.getLayoutHtml(mdMenuLayout.getConfigObject($(this).attr("value")));
+				});
+				
+				$("#el-gen").sortable({
+					handle: 'a.handle',
+					revert: false,
+					placeholder: "ui-state-highlight",
+					items: "div.el-row"
+				});
+				
+				$("#layout_newrow").click(function() {
+					var column = $('#mni-layout input:radio:checked').val();
+					mdMenuLayout.getLayoutHtml(mdMenuLayout.getConfigObject("[[48]]"));
+					return false;
+				});
+				
+				$("#layout_save").click(function() {
+					var layoutSetting = [];
+					$("#el-gen .el-row").each(function() {
+						var rowSeting = [];
+						$(this).find(".el-block").each(function() {
+							rowSeting.push(mdMenuLayout.extractColNum($(this)));
+						});
+						layoutSetting.push(rowSeting);
+					});
+					alert($.objectToString(layoutSetting));
+				});
+				
+				$(".el-delete").live("click", function() {
+					var parent = $(this).parent();
+					var colNum = mdMenuLayout.extractColNum(parent);
+					if(colNum > 0 && colNum < 12) {
+						var next = parent.next("div.el-block");
+						var nextColNum = mdMenuLayout.extractColNum(next);
+						if(!mdMenuLayout.updateColNum(next, (nextColNum + colNum))) {
+							var prev = parent.prev("div.el-block");
+							var prevColNum = mdMenuLayout.extractColNum(prev);
+							mdMenuLayout.updateColNum(prev, (prevColNum + colNum))
+						}
+						parent.remove();
+					} else {
+						$(this).parent().parent().remove();
+					}
+					return false;
+				});
+				styleHtml.appendTo(document.body).hide();
+				$("input.color-picker", styleHtml).ColorPicker({
+					onSubmit: function(hsb, hex, rgb, el) {
+						$(el).val(hex);
+						$(el).ColorPickerHide();
+					},
+					onBeforeShow: function () {
+						current_obj = this;
+						$(this).ColorPickerSetColor(this.value);
+					},
+					onChange: function (hsb, hex, rgb) {
+						$(current_obj).val(hex);
+					}
+				}).bind('keyup', function(){
+					$(this).ColorPickerSetColor(this.value);
+				});
+				
+				$("a.btn_save", styleHtml).click(function() {
+					var setting = mdMenuLayout.getStyleHtmlVal();
+					parent = styleHtml.data("item");
+					parent.children("input.setting").val($.objectToString(setting));
+					styleHtml.hide();
+					return false;
+				});
+				$("a.btn_cancel", styleHtml).click(function() {
+					styleHtml.hide();
+					return false;
+				});
+				$(".el-style, .el-globalstyle").live("click", function() {
+					var offset = $(this).offset();
+					var parent = $(this).parent();
+					var setting = parent.children("input.setting").val();
+					mdMenuLayout.setStyleHtmlVal($.stringToObject(setting));
+					styleHtml.data("item", parent).css({'top':offset.top + 19,'left':offset.left -13}).show();
+					return false;
+				});
+				
+				$(".el-split").live("click", function() {
+					var parent = $(this).parent();
+					var row = parent.parent();
+					var numrow = mdMenuLayout.extractColNum(parent);
+					if(numrow > 1) {
+						var newcolnum = Math.floor(numrow/2);
+						var oldcolnum = numrow - newcolnum;
+						mdMenuLayout.updateColNum(parent, oldcolnum);
+						parent.after(mdMenuLayout.getColTemplate(newcolnum));
+					}
+					return false;
+				});
+				
+				$(".el-wider").live("click", function() {
+					var parent = $(this).parent();
+					var next = parent.next("div.el-block");
+					if(mdMenuLayout.shortenCol(next, "next")) {
+						var colNum = mdMenuLayout.extractColNum(parent);
+						mdMenuLayout.updateColNum(parent, ++colNum);
+					}
+					return false;
+				});
+				
+				$(".el-shorten").live("click", function() {
+					var parent = $(this).parent();
+					var next = parent.prev("div.el-block");
+					if(mdMenuLayout.shortenCol(next, "prev")) {
+						var colNum = mdMenuLayout.extractColNum(parent);
+						mdMenuLayout.updateColNum(parent, ++colNum);
+					}
+					return false;
+				});
+		    },
+		    getLayoutConfig: function() {
+				var layoutSetting = [];
+				var numCol = mdMenuLayout.extractColNum($("#el-gen"));
+				var fullWidth = mdMenuLayout.extractFullWidth();
+				$("#el-gen .el-row").each(function() {
+					var cols = [];
+					$(this).find(".el-block").each(function() {
+						cols.push({
+							style: $.stringToObject($(this).children("input.setting").val()),
+							length: (mdMenuLayout.extractColNum($(this)) * 48 / numCol)
+						});
+					});
+					layoutSetting.push({
+						style: $.stringToObject($(this).children("input.setting").val()),
+						cols: cols
+					});
+				});
+				return {numCol: numCol, setting: layoutSetting, isFullWidth: fullWidth['isFull'], subWidth: fullWidth['subWidth']};
+		    },
+		    applyLayoutConfig: function(layoutConfig) {
+		    	var fullWidth = [];
+		    	fullWidth['isFull'] = layoutConfig.isFullWidth;
+		    	fullWidth['subWidth'] = layoutConfig.subWidth;
+		    	mdMenuLayout.applyNumCol(layoutConfig.numCol, layoutConfig.setting, fullWidth);
+		    },
+		    shortenCol: function(col, nextElm) {
+		    	if(col != null && col.length > 0) {
+		    		var colNum = mdMenuLayout.extractColNum(col);
+		    		if(colNum > 1) {
+		    			mdMenuLayout.updateColNum(col, --colNum);
+		    			return true;
+		    		} else {
+		    			if(nextElm == "next") {
+		    				return mdMenuLayout.shortenCol(col.next("div.el-block"), nextElm);
+		    			} else {
+		    				return mdMenuLayout.shortenCol(col.prev("div.el-block"), nextElm);
+		    			}
+		    		}
+		    	} 
+		    	return false;
+		    },
+		    updateColNum: function(col, num) {
+		    	if(num > 0 && num < 13 && col != null && col.length > 0) {
+		    		col.removeClass('mmg_1 mmg_2 mmg_3 mmg_4 mmg_5 mmg_6 mmg_7 mmg_8 mmg_9 mmg_10 mmg_11 mmg_12 mmg_13 mmg_14 mmg_15 mmg_16');
+		    		col.addClass("mmg_" + num);
+		    		return true;
+		    	}
+		    	return false;
+		    },
+		    extractSpanNum: function(a) {
+		        var b, c, d;
+		        b = $(a).attr("class"), c = b.split(/\s+/);
+		        for (d = 0; d < c.length; d += 1) if (c[d].match(/^mmg_/)) return c[d].split("_")[1]
+		    },
+		    extractColNum: function(col) {
+		    	var numrow;
+		    	if(col != null && col.length > 0) {
+		    		numrow = col.attr("class").match(/\d+/);
+		    	}
+		    	numrow = numrow ? parseInt(numrow[0]) : 0;
+		        return numrow;
+		    },
+		    /**
+		     * Added by Duynv
+		     * Get is submenu full width or not
+		     */
+		    extractFullWidth: function() {
+		    	var ret = [];
+		    	ret['isFull'] = $('#submnu_full_width').is(':checked');
+		    	ret['subWidth'] = '';
+		    	if (!ret['isFull'] && !isNaN(parseInt($('#mnu_subwid').val()))) {
+		    		ret['subWidth'] = $('#mnu_subwid').val();
+		    	}
+		    	
+		    	return ret;
+		    },		    
+		    /**
+		     * End added by Duynv
+		     */		    
+		    getColTemplate: function(colnum, style) {
+		    	var layoutCol = $('<div class="el-block mmg_'+colnum+'">'
+		    					+ 	'<a href="#" class="el-delete" title="Delete this column"></a>'
+		    					+ 	'<a href="#" class="el-style" title="Change column style"></a><input type="hidden" class="setting" value="" autocomplete="off" />'
+		    					+ 	'<a href="#" class="el-split" title="Split column"></a>'
+		    					+ 	'<a href="#" class="el-wider" title="Make this column wider"></a>'
+		    					+ 	'<a href="#" class="el-shorten" title="Make this column shorten"></a>'
+		    					+ '</div>');
+		    	
+		    	layoutCol.children("input.setting").val($.objectToString(style));
+		    	return layoutCol.clone();
+		    },
+		    getLayoutHtml: function(layoutSetting) {
+		    	var numCol = mdMenuLayout.extractColNum($("#el-gen"));
+		    	layoutSetting = (typeof layoutSetting == "string") ? $.stringToObject(layoutSetting) : layoutSetting;
+		    	if(layoutSetting.length > 0) {
+		    		for (var i = 0; i < layoutSetting.length; i++) {
+		    			var rowSetting = layoutSetting[i];
+		    			row = $('<div class="el-row"><a href="#" class="handle"></a><a href="#" class="el-globalstyle" title="Change row style"></a><input type="hidden" class="setting" value="" autocomplete="off" /></div>');
+		    			row.children("input.setting").val($.objectToString(rowSetting.style));
+		    			cols = rowSetting.cols;
+		    			if(cols != undefined) {
+		    				var colSum = 0;
+		    				for(var j = 0; j < (cols.length - 1); j++) {
+		    					var colNum = parseInt(cols[j].length * numCol / 48);
+		    					colSum += colNum;
+		    					if(colSum < numCol) { // Moi row phai co colSetting co sum < 48
+		    						row.append(mdMenuLayout.getColTemplate(colNum, cols[j].style));
+		    					} 
+		    				}
+		    				if(colSum < numCol) {
+		    					row.append(mdMenuLayout.getColTemplate(numCol - colSum, cols[cols.length - 1].style));
+		    				}
+		    			}
+		    			$("#el-gen").append(row);
+		    		}
+		    	}
+		    },
+
+		    applyNumCol: function(numcol, layoutSettingStr, fullWidth) {
+		    	$('input:radio[name="column_grid"][value="' + numcol + '"]').attr('checked', true);		    	
+		    	$('#submnu_full_width').attr('checked', fullWidth['isFull']);
+		    	$('#mnu_subwid').val(fullWidth['subWidth']);
+		    	$("#el-gen").removeClass("fluid_mmcontainer_12 fluid_mmcontainer_16").addClass("fluid_mmcontainer_" + numcol);
+		    	$("#el-gen").html("");
+		    	mdMenuLayout.getLayoutHtml(layoutSettingStr);
+		    },
+
+		    setStyleHtmlVal: function(setting) {
+		    	setting = $.extend({
+		    		elsmargin: false,
+		    		elsbackground: "",
+		    		elsborderw: "",
+		    		elsborders: "",
+		    		elsborderc: ""
+		    	}, setting);
+		    	$('input[name="els-margin"]', styleHtml).attr('checked', setting.elsmargin),
+		    	$('input[name="els-background"]').val(setting.elsbackground);
+		    	$('input[name="els-borderw"]').val(setting.elsborderw);
+		    	$('select[name="els-borders"]').val(setting.elsborders);
+		    	$('input[name="els-borderc"]').val(setting.elsborderc);
+		    },
+		    getConfigObject: function(str) {
+		    	var setting = [];
+		    	var config = $.stringToObject(str);
+		    	for (var i = 0; i < config.length; i++) {
+		    		rowSetting = {style: null, cols: []};
+		    		for(var j = 0; j < config[i].length; j++) {
+		    			rowSetting.cols.push({style:null, length: config[i][j]});
+		    		}
+		    		setting.push(rowSetting);
+		    	}
+		    	return setting;
+		    },
+		    getStyleHtmlVal: function() {
+		    	return {
+		    		elsmargin: $('input[name="els-margin"]', styleHtml).is(':checked') ? true : false,
+		    		elsbackground: $('input[name="els-background"]').val(),
+		    		elsborderw: $('input[name="els-borderw"]').val(),
+		    		elsborders: $('select[name="els-borders"]').val(),
+		    		elsborderc: $('input[name="els-borderc"]').val()
+		    	};
+		    }
+		};
+	Drupal.menuLayout = mdMenuLayout;
+})(jQuery);

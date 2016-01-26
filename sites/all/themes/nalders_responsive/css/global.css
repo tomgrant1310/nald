@@ -638,6 +638,12 @@ zone-preface img {
   }
 }
 
+@media screen and (min-width: 592px) and (max-width: 894px) {
+  .mm-item a {
+    margin-left:0px;
+  }
+}
+
 
 
 .zone-menu .block-menu {

@@ -2,252 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd643ca7-393c-4dc8-9691-f1a677a35761" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/.drush-lock-update" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/css/documenter_style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/css/img/info.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/css/img/pre_bg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/css/img/warning.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/assign-to-region.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/customization.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/edit-page.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/slide-configure.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/slide-delete.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/slide-items.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/slide-overview.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/timeline-panel.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/tool-panel1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/tool-panel2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/images/tool-panel3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/js/jquery.1.6.4.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/js/jquery.easing.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/js/jquery.scrollTo-1.4.2-min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/Documentation/js/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-8.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-9.psd.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-bottom-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-bottom-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-bottom-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-bottom-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-left-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-left-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-left-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-left-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-right-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-right-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-right-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-right-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-top-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-top-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-top-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/prop-base/border-top-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-8.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-9.psd.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-bottom-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-bottom-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-bottom-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-bottom-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-left-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-left-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-left-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-left-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-right-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-right-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-right-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-right-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-top-2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-top-3.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-top-4.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/images/border/.svn/text-base/border-top-9.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/css/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/css/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/css/.svn/text-base/colorpicker.css.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/css/colorpicker.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/blank.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_background.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_hex.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_hsb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_hsb_h.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_hsb_s.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_indic.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_overlay.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_rgb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_rgb_g.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_rgb_r.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_select.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/colorpicker_submit.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_background.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_hex.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_hsb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_hsb_h.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_hsb_s.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_indic.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_rgb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_rgb_g.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_rgb_r.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/custom_submit.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/removecolor.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/select.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/select2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/prop-base/slider.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/blank.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_background.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_hex.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_hsb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_hsb_h.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_hsb_s.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_indic.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_overlay.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_rgb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_rgb_g.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_rgb_r.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_select.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/colorpicker_submit.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_background.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_hex.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_hsb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_hsb_h.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_hsb_s.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_indic.gif.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_rgb_b.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_rgb_g.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_rgb_r.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/custom_submit.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/removecolor.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/select.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/select2.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/.svn/text-base/slider.png.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/blank.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_background.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_hex.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_hsb_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_hsb_h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_hsb_s.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_indic.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_overlay.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_rgb_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_rgb_g.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_rgb_r.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_select.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/colorpicker_submit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_background.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_hex.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_hsb_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_hsb_h.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_hsb_s.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_indic.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_rgb_b.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_rgb_g.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_rgb_r.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/custom_submit.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/removecolor.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/select.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/select2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/images/slider.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/js/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/js/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/js/.svn/text-base/colorpicker.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/colorpicker/js/colorpicker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider.dev.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/mdvideobox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/mdvideobox.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/css/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/css/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/css/.svn/text-base/md-slider.css.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/img/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/img/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/img/.svn/prop-base/1.jpg.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/img/.svn/prop-base/2.jpg.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/img/.svn/text-base/1.jpg.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/img/.svn/text-base/2.jpg.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/.svn/text-base/jquery.easing.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/.svn/text-base/jquery.touchwipe.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/.svn/text-base/md-slider-min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/.svn/text-base/md-slider-preview.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.button.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.core.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.dialog.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.draggable.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.droppable.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.mouse.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.position.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.resizable.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.slider.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.sortable.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.tabs.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/.svn/text-base/jquery.ui.widget.min.js.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/all-wcprops" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/entries" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/text-base/admin_layers_render.tpl.php.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/text-base/admin_slides_render.tpl.php.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/text-base/md_slider_edit_form.tpl.php.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/text-base/md_transition_library.tpl.php.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/text-base/slide_settings.tpl.php.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/text-base/theme.admin.inc.svn-base" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/.svn/text-base/video_setting_form.tpl.php.svn-base" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider.zip" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/css/md-slider-admin.css" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/css/md-slider-admin.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/css/md-slider-style.css" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/css/md-slider-style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/css/md-slider.css" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/css/md-slider.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/includes/md_slider.admin.inc" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/includes/md_slider.admin.inc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/includes/md_slider.classes.inc" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/includes/md_slider.classes.inc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/includes/md_slider.utils.inc" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/includes/md_slider.utils.inc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery-migrate-1.2.1.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery-migrate-1.2.1.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.easing.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.easing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.qtip-1.0.0-rc3.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.qtip-1.0.0-rc3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.touchwipe.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/jquery.touchwipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-admin-configure.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-admin-configure.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-admin-edit.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-admin-edit.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-export.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-export.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-field-configure.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-field-configure.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-lib.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-lib.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-panel.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-panel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-timeline.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-timeline.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-toolbar.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider-toolbar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/md-slider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/modernizr.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/modernizr.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/jquery.easing.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/jquery.easing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/jquery.touchwipe.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/jquery.touchwipe.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/md-slider-min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/md-slider-min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/md-slider-preview.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/preview_transition/js/md-slider-preview.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/spectrum/spectrum.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/spectrum/spectrum.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.button.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.button.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.core.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.core.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.dialog.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.dialog.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.draggable.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.draggable.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.droppable.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.droppable.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.mouse.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.mouse.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.position.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.position.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.resizable.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.resizable.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.slider.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.slider.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.sortable.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.sortable.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.tabs.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.tabs.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.widget.min.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/js/ui/jquery.ui.widget.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/md_slider.info" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/md_slider.info" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/md_slider.install" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/md_slider.install" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/md_slider.module" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/md_slider.module" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/admin_slides_render.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/admin_slides_render.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/slide_settings.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/admin/slide_settings.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/front/front_slide_render.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/front/front_slide_render.tpl.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/front/theme.front.inc" afterPath="$PROJECT_DIR$/sites/all/modules/md_slider/templates/front/theme.front.inc" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/.drush-lock-update" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/css/mega_menu.css" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/css/mega_menu.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/includes/md_megamenu.admin.inc" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/includes/md_megamenu.admin.inc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/includes/md_megamenu.class.inc" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/includes/md_megamenu.class.inc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/includes/md_megamenu.utils.inc" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/includes/md_megamenu.utils.inc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-item.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-item.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-layout.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-layout.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-settings.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-settings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-tab.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.menu-tab.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.tree-menu.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/js/md.tree-menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/md_megamenu.info" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/md_megamenu.info" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/md_megamenu.module" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/md_megamenu.module" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/menu_styles/css/mm-base.css" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/menu_styles/css/mm-base.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/menu_styles/js/md.menu.js" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/menu_styles/js/md.menu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/templates/menu/md_megamenu_dropdown_tab.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/templates/menu/md_megamenu_dropdown_tab.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/templates/menu/md_megamenu_tab.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/templates/menu/md_megamenu_tab.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/modules/md_megamenu/templates/menu/md_megamenu_theme.tpl.php" afterPath="$PROJECT_DIR$/sites/all/modules/md_megamenu/templates/menu/md_megamenu_theme.tpl.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/nalders_responsive/css/global.css" afterPath="$PROJECT_DIR$/sites/all/themes/nalders_responsive/css/global.css" />
     </list>
     <ignored path="nalders.co.uk.iws" />
@@ -269,12 +43,12 @@
     <favorites_list name="nalders.co.uk" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="global.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sites/all/themes/nalders_responsive/css/global.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.17729084">
-              <caret line="634" column="33" selection-start-line="634" selection-start-column="33" selection-end-line="634" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.4345404">
+              <caret line="636" column="13" selection-start-line="636" selection-start-column="13" selection-end-line="636" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -283,8 +57,8 @@
       <file leaf-file-name="mega_menu.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sites/all/modules/md_megamenu/css/mega_menu.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-620.0">
-              <caret line="957" column="115" selection-start-line="957" selection-start-column="115" selection-end-line="957" selection-end-column="115" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="958" column="115" selection-start-line="958" selection-start-column="115" selection-end-line="958" selection-end-column="115" />
               <folding />
             </state>
           </provider>
@@ -299,6 +73,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/sites/all/themes/nalders_responsive/css/global.css" />
+        <option value="$PROJECT_DIR$/sites/default/settings.php" />
       </list>
     </option>
   </component>
@@ -307,12 +82,14 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-16" />
-    <option name="y" value="223" />
+    <option name="y" value="231" />
     <option name="width" value="1366" />
-    <option name="height" value="716" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -339,7 +116,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -386,169 +162,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders_responsive" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders_responsive" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="md_megamenu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="md_megamenu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="nalders.co.uk" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
+              <option name="myItemId" value="default" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -570,6 +191,11 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -580,6 +206,9 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="dd643ca7-393c-4dc8-9691-f1a677a35761" name="Default" comment="" />
@@ -590,27 +219,35 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-16" y="223" width="1366" height="716" extended-state="0" />
+    <frame x="0" y="231" width="1366" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25378788" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25757575" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3279483" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -620,18 +257,44 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/nalders_responsive/css/global.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/modules/md_megamenu/css/mega_menu.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-620.0">
-          <caret line="957" column="115" selection-start-line="957" selection-start-column="115" selection-end-line="957" selection-end-column="115" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="958" column="115" selection-start-line="958" selection-start-column="115" selection-end-line="958" selection-end-column="115" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/modules/md_megamenu/css/mega_menu.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="958" column="115" selection-start-line="958" selection-start-column="115" selection-end-line="958" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/default/settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15041783">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+          <folding>
+            <element signature="e#106#1948#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/nalders_responsive/css/global.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17729084">
-          <caret line="634" column="33" selection-start-line="634" selection-start-column="33" selection-end-line="634" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.4345404">
+          <caret line="636" column="13" selection-start-line="636" selection-start-column="13" selection-end-line="636" selection-end-column="13" />
           <folding />
         </state>
       </provider>
