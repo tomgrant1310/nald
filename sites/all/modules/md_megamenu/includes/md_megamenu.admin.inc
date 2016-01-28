@@ -69,7 +69,8 @@ function md_megamenu_configure_form($form, &$form_state, $menu_ids = NULL) {
 
   $form['menu_title'] = array(
     '#type' => 'textfield',
-    '#title' => 'Menu name',
+    '#title' => t('Menu name'),
+    '#description' => t('The human readable name of menu.'),
     '#required' => TRUE,
     '#default_value' => ($menu) ? $menu->title : "",
   );
@@ -91,7 +92,8 @@ function md_megamenu_configure_form($form, &$form_state, $menu_ids = NULL) {
 
   $form['menu_description'] = array(
     '#type' => 'textarea',
-    '#title' => 'Description',
+    '#title' => t('Description'),
+    '#description' => t('Short description for this menu and use only for admin.'),
     '#rows' => 2,
     '#resizable' => FALSE,
     '#default_value' => ($menu) ? $menu->description : "",
@@ -107,7 +109,6 @@ function md_megamenu_configure_form($form, &$form_state, $menu_ids = NULL) {
       <div class="md-listleft">
       <ul class="clearfix">
       <li class="subtab-item clearfix first"><a class="subtab-link" href="#edit-general-settings">General</a></li>
-      <li class="subtab-item clearfix"><a class="subtab-link" href="#edit-animation-settings">Animation</a></li>
       <li class="subtab-item clearfix"><a class="subtab-link" href="#edit-style-settings">Design</a></li>
       <li class="subtab-item clearfix "><a class="subtab-link" href="#edit-font-settings">Text &amp; Typography</a></li>
       <li class="subtab-item clearfix last"><a class="subtab-link" href="#edit-responsive-settings">Responsive setting</a></li>
@@ -127,44 +128,79 @@ function md_megamenu_configure_form($form, &$form_state, $menu_ids = NULL) {
     '#attributes' => array('class' => array('dmg-left')),
   );
 
-  $orientations = array(
-    'horizontal' => t('Horizontal'),
-    'vertical' => t('Vertical'),
-  );
-  $form['general_settings']['dm_left']['dmg_orientation'] = array(
+  $form['general_settings']['dm_left']['menu_type'] = array(
     '#type' => 'select',
-    '#title' => 'Orientation',
-    '#options' => $orientations,
-    '#default_value' => $settings['general']['dmg_orientation'],
-  );
-
-  $form['general_settings']['dm_left']['dmg_submenuw'] = array(
-    '#type' => 'textfield',
-    '#title' => 'Vertical Megamenu Width',
-    '#field_suffix' => 'px',
-    '#default_value' => $settings['general']['dmg_submenuw'],
-    '#attributes' => array('class' => array('w60')),
-  );
-
-  $form['general_settings']['dm_left']['dmg_verdir'] = array(
-    '#type' => 'select',
-    '#title' => t('Vertical direction'),
+    '#title' => t('Menu type'),
+    '#description' => t('Type of menu in desktop mode.'),
     '#options' => array(
-      'ltr' => t('Left to right'),
-      'rtl' => t('Right to left')
+      'standard' => t('Standard'),
+      'top' => t('Fixed Top'),
+      'bottom' => t('Fixed Bottom'),
+      'left' => t('Left'),
+      'outleft' => t('OutLeft'),
+      'right' => t('Right'),
+      'outright' => t('OutRight')
     ),
-    '#default_value' => $settings['general']['dmg_verdir'],
+    '#default_value' => isset($settings['menu_type']) ? $settings['menu_type'] : 'standard'
+  );
+
+  $form['general_settings']['dm_left']['menu_desktop_trigger'] = array(
+    '#type' => 'select',
+    '#title' => t('Menu trigger'),
+    '#description' => t('Mouse event to show submenu in desktop mode.'),
+    '#options' => array(
+      'hover' => t('Hover'),
+      'click' => t('Click'),
+      'toggle' => t('Toggle')
+    ),
+    '#default_value' => isset($settings['menu_desktop_trigger']) ? $settings['menu_desktop_trigger'] : 'hover'
+  );
+
+  $form['general_settings']['dm_left']['menu_animation'] = array(
+    '#type' => 'select',
+    '#title' => t('Animation'),
+    '#options' => array(
+        'fade' => t('Fade'),
+        'fadeup' => t('Fade Up'),
+        'fadedown' => t('Fade Down'),
+        'fadeleft' => t('Fade Left'),
+        'faderight' => t('Fade Right'),
+        'zoom' => t('Zoom'),
+        'rotateupleft' => t('Rotate Left'),
+        'flipx' => t('FlipX'),
+        'flipy' => t('flipY'),
+        'flipyright' => t('Flipy Right'),
+        'slideleft' => t('Slide Left'),
+        'slideright' => t('Slide Right'),
+        'none' => t('None')
+    ),
+    '#default_value' => isset($settings['menu_animation']) ? $settings['menu_animation'] : 'fadeup',
+  );
+
+  $form['general_settings']['dm_left']['default_animation_duration'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Animation duration'),
+    '#description' => t('Time by milisecond to play animtion when opem/close submenu'),
+    '#default_value' => isset($settings['default_animation_duration']) ? $settings['default_animation_duration'] :500,
+    '#field_suffix' => 'ms',
+    '#attributes' => array('class' => array('w60'))
+  );
+
+  $form['general_settings']['dm_left']['menu_sticky'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable sticky'),
+    '#default_value' => isset($settings['menu_sticky']) ? $settings['menu_sticky'] : 0
   );
 
   $form['general_settings']['dm_left']['dmg_fullwidth'] = array(
     '#type' => 'checkbox',
-    '#title' => 'Menu bar fullwidth',
+    '#title' => t('Menu full width'),
     '#default_value' => $settings['general']['dmg_fullwidth'],
   );
 
   $form['general_settings']['dm_left']['dmg_customwidth'] = array(
     '#type' => 'textfield',
-    '#title' => t('Custom width'),
+    '#title' => t('Menu width'),
     '#default_value' => $settings['general']['dmg_customwidth'],
     '#field_suffix' => 'px',
     '#attributes' => array('class' => array('w60')),
@@ -184,38 +220,25 @@ function md_megamenu_configure_form($form, &$form_state, $menu_ids = NULL) {
     '#attributes' => array('class' => array('w60')),
   );
 
-  $form['general_settings']['dm_left']['dmg_fixed'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Menu fixed'),
-    '#default_value' => $settings['general']['dmg_fixed'],
-  );
-
-  $form['general_settings']['dm_left']['dmg_showfixed'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Button to show/hide the menu bar'),
-    '#default_value' => $settings['general']['dmg_showfixed'],
-  );
-
-  $form['general_settings']['dm_left']['dmg_position'] = array(
-    '#type' => 'select',
-    '#title' => t('Position'),
-    '#options' => array(
-      'center_top' => t('Center top'),
-      'center_bottom' => t('Center bottom')
-    ),
-    '#default_value' => $settings['general']['dmg_position'],
+  $form['general_settings']['dm_left']['hover_delay'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Hover active time'),
+    '#description' => t('Time by milisecond to show when mouse enter menu item'),
+    '#default_value' => isset($settings['hover_delay']) ? $settings['hover_delay'] :500,
+    '#field_suffix' => 'ms',
+    '#attributes' => array('class' => array('w60'))
   );
 
   $form['general_settings']['dm_right'] = array(
     '#type' => 'checkboxes',
+    '#title' => t('Others settings'),
     '#options' => array(
-      'dmg_responsive' => t('Enable responsive'),
-      'dmg_arrow' => t('Auto generate arrow'),
-      'dmg_desc' => t('Menu description'),
+      'dmg_arrow' => t('Enable item arrow'),
       'dmg_cssclasses' => t('Custom css classes'),
       'dmg_menuicon' => t('Use menu icon'),
       'dmg_menuitemicon' => t('Use menu item icon'),
-      'dmg_clickoutside' => t('Clicks outside to close'),
+      'dmg_enable_logo' => t('Use system logo'),
+      'dmg_enabled_load_transition' => t('Enable load transition'),
     ),
     '#default_value' => $settings['general']['dm_right'],
   );
@@ -228,9 +251,51 @@ function md_megamenu_configure_form($form, &$form_state, $menu_ids = NULL) {
 
   $form['responsive_settings']['res_width'] = array(
     '#type' => 'textfield',
-    '#title' => t('Enter width device you want responsive'),
-    '#description' => t('When width equal value below menu is responsive'),
+    '#title' => t('Responsive width'),
+    '#description' => t('When window width equal value below menu is responsive'),
     '#default_value' => isset($settings['responsive']['res_width']) ? $settings['responsive']['res_width'] : 640,
+    '#field_suffix' => 'px',
+    '#attributes' => array('class' => array('w60'))
+  );
+
+  $form['responsive_settings']['mobile_menu_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Menu type'),
+    '#description' => t('Type of menu in mobile display mode.'),
+    '#options' => array(
+      'standard' => t('Standard'),
+      'top' => t('Top'),
+      'bottom' => t('Bottom'),
+      'outleft' => t('OutLeft'),
+      'outright' => t('OutRight')
+    ),
+    '#default_value' => (isset($settings['responsive']['mobile_menu_type'])) ? $settings['responsive']['mobile_menu_type'] : 'standard'
+  );
+
+  $form['responsive_settings']['mobile_trigger'] = array(
+    '#type' => 'select',
+    '#title' => t('Responsive trigger'),
+    '#options' => array(
+      'click' => t('Click'),
+      'toggle' => t('Toggle')
+    ),
+    '#description' => t('Mouse event to active submenu when menu in mobile display mode.'),
+    '#default_value' => (isset($settings['responsive']['mobile_trigger'])) ? $settings['responsive']['mobile_trigger'] : 'click'
+  );
+
+  $form['responsive_settings']['mobile_animation_duration'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Animation duration'),
+    '#description' => t('Time by milisecond to show/hide submenu.'),
+    '#default_value' => isset($settings['responsive']['mobile_animation_duration']) ? $settings['responsive']['mobile_animation_duration'] : 300,
+    '#field_suffix' => 'ms',
+    '#attributes' => array('class' => array('w60'))
+  );
+
+  $form['responsive_settings']['mobile_arrow'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Show item arrow'),
+    '#default_value' => isset($settings['responsive']['mobile_arrow']) ? $settings['responsive']['mobile_arrow'] : 1
   );
 
   $form['responsive_settings']['res_text'] = array(
@@ -254,107 +319,6 @@ function md_megamenu_configure_form($form, &$form_state, $menu_ids = NULL) {
       'class' => array('form-colorpicker'),
     ),
     '#default_value' => isset($settings['responsive']['res_bar_color']) ? $settings['responsive']['res_bar_color'] : '',
-  );
-  # Animation settings
-  $form['animation_settings'] = array(
-    '#type' => 'container',
-    '#attributes' => array('class' => array('md-tabcontent', 'clearfix'))
-  );
-
-  $form['animation_settings']['dma_left'] = array(
-    '#type' => 'container',
-    '#attributes' => array('class' => array('dma-left')),
-  );
-
-  $form['animation_settings']['dma_left']['dma_animation'] = array(
-    '#type' => 'select',
-    '#title' => t('Animation'),
-    '#options' => array(
-      'slide' => t('Slide'),
-      'fade' => t('Fade'),
-      'none' => t('None')
-    ),
-    '#default_value' => $settings['animation']['dma_animation'],
-  );
-
-  $form['animation_settings']['dma_left']['dma_trigger'] = array(
-    '#type' => 'select',
-    '#title' => t('Trigger'),
-    '#options' => array(
-      'hover_intent' => t('Hover intent'),
-      'hover' => t('Hover'),
-      'click' => t('Click')
-    ),
-    '#default_value' => $settings['animation']['dma_trigger'],
-  );
-
-  $form['animation_settings']['dma_left']['dma_easing'] = array(
-    '#type' => 'select',
-    '#title' => t('Easing'),
-    '#options' => array(
-      '0' => t('None'),
-      'jswing' => t('jswing'),
-      'easeInQuad' => t('easeInQuad'),
-      'easeOutQuad' => t('easeOutQuad'),
-      'easeInOutQuad' => t('easeInOutQuad'),
-      'easeInCubic' => t('easeInCubic'),
-      'easeOutCubic' => t('easeOutCubic'),
-      'easeInOutCubic' => t('easeInOutCubic'),
-      'easeInQuart' => t('easeInQuart'),
-      'easeOutQuart' => t('easeOutQuart'),
-      'easeInOutQuart' => t('easeInOutQuart'),
-      'easeInQuint' => t('easeInQuint'),
-      'easeOutQuint' => t('easeOutQuint'),
-      'easeInOutQuint' => t('easeInOutQuint'),
-      'easeInSine' => t('easeInSine'),
-      'easeOutSine' => t('easeOutSine'),
-      'easeInOutSine' => t('easeInOutSine'),
-      'easeInExpo' => t('easeInExpo'),
-      'easeOutExpo' => t('easeOutExpo'),
-      'easeInOutExpo' => t('easeInOutExpo'),
-      'easeInCirc' => t('easeInCirc'),
-      'easeOutCirc' => t('easeOutCirc'),
-      'easeInOutCirc' => t('easeInOutCirc'),
-      'easeInElastic' => t('easeInElastic'),
-      'easeOutElastic' => t('easeOutElastic'),
-      'easeInOutElastic' => t('easeInOutElastic'),
-      'easeInBack' => t('easeInBack'),
-      'easeOutBack' => t('easeOutBack'),
-      'easeInOutBack' => t('easeInOutBack'),
-      'easeInBounce' => t('easeInBounce'),
-      'easeOutBounce' => t('easeOutBounce'),
-      'easeInOutBounce' => t('easeInOutBounce'),
-    ),
-    '#default_value' => $settings['animation']['dma_easing'],
-  );
-
-  $form['animation_settings']['dma_right'] = array(
-    '#type' => 'container',
-    '#attributes' => array('class' => array('dma-right')),
-  );
-
-  $form['animation_settings']['dma_right']['dma_show'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Menu speed show'),
-    '#field_suffix' => 'milisecond',
-    '#default_value' => $settings['animation']['dma_show'],
-    '#attributes' => array('class' => array('w60')),
-  );
-
-  $form['animation_settings']['dma_right']['dma_hide'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Menu speed hide'),
-    '#field_suffix' => 'milisecond',
-    '#default_value' => $settings['animation']['dma_hide'],
-    '#attributes' => array('class' => array('w60')),
-  );
-
-  $form['animation_settings']['dma_right']['dma_delay'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Menu speed delay'),
-    '#field_suffix' => 'milisecond',
-    '#default_value' => $settings['animation']['dma_delay'],
-    '#attributes' => array('class' => array('w60')),
   );
 
   # Design settings
@@ -969,16 +933,10 @@ function md_megamenu_configure_form_submit($form, &$form_state) {
 
     # Get general settings
     $general_settings = array();
-    $general_settings['dmg_orientation'] = $custom_settings['dmg_orientation'];
-    $general_settings['dmg_submenuw'] = $custom_settings['dmg_submenuw'];
-    $general_settings['dmg_verdir'] = $custom_settings['dmg_verdir'];
     $general_settings['dmg_fullwidth'] = $custom_settings['dmg_fullwidth'];
     $general_settings['dmg_customwidth'] = $custom_settings['dmg_customwidth'];
     $general_settings['dmg_defaultheight'] = $custom_settings['dmg_defaultheight'];
     $general_settings['dmg_customheight'] = $custom_settings['dmg_customheight'];
-    $general_settings['dmg_fixed'] = $custom_settings['dmg_fixed'];
-    $general_settings['dmg_showfixed'] = $custom_settings['dmg_showfixed'];
-    $general_settings['dmg_position'] = $custom_settings['dmg_position'];
     foreach ($custom_settings['dm_right'] as $value) {
       if (is_string($value)) {
         $general_settings['dm_right'][] = $value;
@@ -989,20 +947,22 @@ function md_megamenu_configure_form_submit($form, &$form_state) {
     # Get responsive settings
     $responsive_settings = array();
     $responsive_settings['res_width'] = $custom_settings['res_width'];
+    $responsive_settings['mobile_arrow'] = $custom_settings['mobile_arrow'];
+    $responsive_settings['mobile_trigger'] = $custom_settings['mobile_trigger'];
+    $responsive_settings['mobile_animation_duration'] = $custom_settings['mobile_animation_duration'];
+    $responsive_settings['mobile_menu_type'] = $custom_settings['mobile_menu_type'];
     $responsive_settings['res_text'] = $custom_settings['res_text'];
     $responsive_settings['res_text_color'] = $custom_settings['res_text_color'];
     $responsive_settings['res_bar_color'] = $custom_settings['res_bar_color'];
     $settings['responsive'] = array_merge(MDMegaMenu::getDefaultSettings('responsive'), $responsive_settings);
 
     # Get animation settings
-    $animation_settings = array();
-    $animation_settings['dma_animation'] = $custom_settings['dma_animation'];
-    $animation_settings['dma_trigger'] = $custom_settings['dma_trigger'];
-    $animation_settings['dma_easing'] = $custom_settings['dma_easing'];
-    $animation_settings['dma_show'] = $custom_settings['dma_show'];
-    $animation_settings['dma_hide'] = $custom_settings['dma_hide'];
-    $animation_settings['dma_delay'] = $custom_settings['dma_delay'];
-    $settings['animation'] = array_merge(MDMegaMenu::getDefaultSettings('animation'), $animation_settings);
+    $settings['menu_animation'] = $custom_settings['menu_animation'];
+    $settings['default_animation_duration'] = $custom_settings['default_animation_duration'];
+    $settings['menu_desktop_trigger'] = $custom_settings['menu_desktop_trigger'];
+    $settings['hover_delay'] = $custom_settings['hover_delay'];
+    $settings['menu_type'] = $custom_settings['menu_type'];
+    $settings['menu_sticky'] = $custom_settings['menu_sticky'];
 
     # Get images settings
     $design_settings = array();
@@ -1144,8 +1104,9 @@ function md_megamenu_edit_links_form($form, &$form_state, $menu_ids) {
   );
 
   // Load media browser
-  _md_megamenu_include_media_browser_js();
-
+  drupal_add_library('media', 'media_browser');
+  drupal_add_library('media', 'media_browser_settings');
+  
   // Add js and css libraries
   drupal_add_html_head_link($attributes);
   drupal_add_css($module_path . '/css/admin_grid.css');
@@ -1159,7 +1120,6 @@ function md_megamenu_edit_links_form($form, &$form_state, $menu_ids) {
   drupal_add_library('system', 'ui.dialog');
   drupal_add_library('system', 'jquery.cookie');
 
-  drupal_add_js($module_path . '/js/jquery-migrate-1.2.1.min.js');
   drupal_add_js($module_path . '/js/cleditor/jquery.cleditor.js');
   drupal_add_js($module_path . '/js/cleditor/jquery.cleditor.megastyle.js');
   drupal_add_js($module_path . '/js/cleditor/jquery.cleditor.table.min.js');
@@ -1234,22 +1194,24 @@ function md_megamenu_edit_links_form($form, &$form_state, $menu_ids) {
 function md_megamenu_edit_links_form_submit($form, &$form_state) {
   $tabs = json_decode($form_state['values']['save_data']);
   $settings = array();
+
   foreach ($tabs as $pos => $tab) {
     # process for tab
     $tab_settings = $tab->settings;
 
     $settings['general']['is_dropdown_menu'] = $tab_settings->mnu_fly_type;
+    $settings['general']['submenu_width'] = isset($tab_settings->submenu_width) ? $tab_settings->submenu_width: 250;
+    $settings['general']['hide_when_logged_in'] = isset($tab_settings->hide_when_logged_in) ? $tab_settings->hide_when_logged_in: FALSE;
+    $settings['general']['submenu_fullwidth'] = isset($tab_settings->submenu_fullwidth) ? $tab_settings->submenu_fullwidth : TRUE;
+    $settings['general']['item_position'] = isset($tab_settings->item_position) ? $tab_settings->item_position : 'auto';
     $settings['general']['title_enable'] = $tab_settings->title_enabled;
     $settings['general']['title'] = $tab_settings->mnu_title;
     $settings['general']['path'] = $tab_settings->mnu_path;
-    $settings['general']['description'] = $tab_settings->mnu_desc;
     $settings['general']['icon'] = $tab_settings->icon_url;
     $settings['general']['css_class'] = $tab_settings->mnu_class;
 
     $settings['layout']['col_grid'] = $tab_settings->mnu_layout->numCol;
     $settings['layout']['rows_setting'] = $tab_settings->mnu_layout->setting;
-    $settings['layout']['is_full_width'] = $tab_settings->mnu_layout->isFullWidth;
-    $settings['layout']['submenu_width'] = $tab_settings->mnu_layout->subWidth;
 
     if ($tab_settings->tab_id == 0) {
       $tab_record = MDMegaTab::create($tab_settings->mnu_id, $pos, $tab->subMenu, $settings);

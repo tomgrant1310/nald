@@ -189,7 +189,7 @@ class MDMegaMenu {
             'dmg_fixed' => 0,
             'dmg_showfixed' => 0,
             'dmg_position' => 'center_bottom',
-            'dm_right' => array('dmg_responsive', 'dmg_pushing', 'dmg_clickoutside', ),
+            'dm_right' => array('dmg_responsive', 'dmg_pushing', 'dmg_clickoutside')
         ),
         'responsive' => array(
           'res_width' => '640',
@@ -335,6 +335,14 @@ class MDMegaTab {
     if (is_string($this->items)) {
       $this->items = unserialize($this->items);
     }
+
+    // move submenu width settings to general settings
+    if (!isset($this->settings['general']['submenu_fullwidth']))
+      $this->settings['general']['submenu_fullwidth'] = isset($this->settings['layout']['is_full_width']) ? $this->settings['layout']['is_full_width'] : TRUE;
+    if (!isset($this->settings['general']['submenu_width']))
+      $this->settings['general']['submenu_width'] = isset($this->settings['layout']['submenu_width']) ? $this->settings['layout']['submenu_width'] : 250;
+    if (!isset($this->settings['general']['item_position']))
+      $this->settings['general']['item_position'] = 'auto';
   }
 
   public function dbFields() {

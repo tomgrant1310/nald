@@ -145,3 +145,13 @@
     border-top: none;
     border-bottom: 3px solid #000;
 }
+
+.md-style1 .mdtoggle-sub {
+	background-color: rgba(0,0,0,.8);
+}
+.md-style1 .mm-hover .mdtoggle-sub,
+.md-style1 .mm-active .mdtoggle-sub {
+	background-color: rgba(255,255,255,.3);
+}
+
+

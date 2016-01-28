@@ -11,10 +11,12 @@
 function tab_setting_to_string($settings, $menu, $tab_id) {
   $output = array();
   $output['mnu_fly_type'] = $settings['general']['is_dropdown_menu'];
+  $output['submenu_width'] = $settings['general']['submenu_width'];
+  $output['submenu_fullwidth'] = $settings['general']['submenu_fullwidth'];
+  $output['item_position'] = $settings['general']['item_position'];
   $output['title_enabled'] = $settings['general']['title_enable'];
   $output['mnu_title'] = $settings['general']['title'];
   $output['mnu_path'] = $settings['general']['path'];
-  $output['mnu_desc'] = $settings['general']['description'];
   $org_icon = $settings['general']['icon'];
   replace_icon_url($menu->settings['design']['top_dmi_img'], $org_icon);
   $output['icon_url'] = $org_icon;
@@ -23,8 +25,6 @@ function tab_setting_to_string($settings, $menu, $tab_id) {
   $output['tab_id'] = $tab_id;
   $output['mnu_layout']['numCol'] = $settings['layout']['col_grid'];
   $output['mnu_layout']['setting'] = $settings['layout']['rows_setting'];
-  $output['mnu_layout']['isFullWidth'] =  $settings['layout']['is_full_width'];
-  $output['mnu_layout']['subWidth'] =  $settings['layout']['submenu_width'];
 
   return json_encode($output);
 }
@@ -152,10 +152,14 @@ function generate_menu_css_configure($mid, $menu_settings) {
   # generate css for top level config
   $out = generate_css_by_level('top', $design);
   if ($out != '') {
-    $css_content .= "#megamenu-" . $mid . ".md-horizontal,\n";
-    $css_content .= "#megamenu-" . $mid . ".md-vertical ul.megamenu {" . "\n";
+    $css_content .= "#md-megamenu-" . $mid . ".md-horizontal-menu,\n";
+    $css_content .= "#md-megamenu-" . $mid . ".md-vertical-menu ul.awemenu {" . "\n";
     $css_content .= $out . "}\n";
   }
+
+  // generate to off animation when reload page
+  if (in_array('dmg_enabled_load_transition', $menu_settings['general']['dm_right']) === FALSE)
+    $css_content .= "#md-megamenu-{$mid} .awemenu-item-level-1 > a { -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none; transition: none;}";
 
   # Generate for sub level config
   $out = generate_css_by_level('sub', $design);
@@ -168,45 +172,43 @@ function generate_menu_css_configure($mid, $menu_settings) {
   }
 
   if ($menu_settings['text_typography']['text_sub_level_color'] != '') {
-    $out .= "color: #" . $menu_settings['text_typography']['text_sub_level_color'] . ";\n";
+    $out .= "\tcolor: #" . $menu_settings['text_typography']['text_sub_level_color'] . ";\n";
   }
 
   if ($out != '') {
-    $css_content .= "#megamenu-" . $mid . " .mm-container {\n" . $out . "}\n";
+    $css_content .= "#md-megamenu-" . $mid . " .awemenu-submenu {\n" . $out . "}\n";
   }
 
   # Generate for hover mega item config
   $out = generate_css_by_level('hoveritem', $design);
   if ($out != '') {
-    $css_content .= "#megamenu-" . $mid . " li.mm-hover > a,\n";
-    $css_content .= "#megamenu-" . $mid . " li.mm-hover > a:link,\n";
-    $css_content .= "#megamenu-" . $mid . " li.mm-hover > a:hover,\n";
-    $css_content .= "#megamenu-" . $mid . " .md-vertical li.mm-hover > a,\n";
-    $css_content .= "#megamenu-" . $mid . " .md-vertical li.mm-hover > a:link,\n";
-    $css_content .= "#megamenu-" . $mid . " .md-vertical li.mm-hover > a:hover  {\n";
+    $css_content .= "#md-megamenu-" . $mid . " li.awemenu-item > a,\n";
+    $css_content .= "#md-megamenu-" . $mid . " li.awemenu-item > a:link,\n";
+    $css_content .= "#md-megamenu-" . $mid . " li.awemenu-item > a:hover {\n";
     $css_content .= $out . "}\n";
   }
 
-  # Generate css for custom height
+  # Generate css for custom width
   if (!$menu_settings['general']['dmg_fullwidth'] && $menu_settings['general']['dmg_customwidth'] != '') {
-    $css_content .= "@media (min-width: {$menu_settings['responsive']['res_width']}px) {";
-    $css_content .= "#megamenu-{$mid} {width: {$menu_settings['general']['dmg_customwidth']}px} \n}";
+    $css_content .= "@media (min-width: {$menu_settings['responsive']['res_width']}px) {\n";
+    $css_content .= "\t#md-megamenu-{$mid} {width: {$menu_settings['general']['dmg_customwidth']}px !important} \n}\n";
   }
+  $css_content .= "#md-megamenu-{$mid} {width: 100%}\n";
 
   # Generate css for custom height
   $height = 0;
   if ($menu_settings['general']['dmg_defaultheight'] && $menu_settings['general']['dmg_customheight'] != '') {
     $height = (int)$menu_settings['general']['dmg_customheight'];
-    $css_content .= "#megamenu-" . $mid . " .mm-container {top: " . $height . "px;}\n";
-    $css_content .= "#megamenu-" . $mid . ".md-vertical .mm-container,\n";
-    $css_content .= "#megamenu-" . $mid . " .mm-dropdown ul li ul.mm-container {top: 0;}\n";
+    $css_content .= "#md-megamenu-" . $mid . " .mm-container {top: " . $height . "px;}\n";
+    $css_content .= "#md-megamenu-" . $mid . ".md-vertical .mm-container,\n";
+    $css_content .= "#md-megamenu-" . $mid . " .mm-dropdown ul li ul.mm-container {top: 0;}\n";
 
     if (in_array('dmg_desc', $menu_settings['general']['dm_right'])) {
-      $css_content .= "#megamenu-" . $mid . " .mm-item > a {height: " . 2*$height/3 . "px; line-height: " . 2*$height/3 . "px; padding-bottom: " . $height/3 . "px;}\n";
-      $css_content .= "#megamenu-" . $mid . " .mm-arrow {top: 36%}\n";
+      $css_content .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a {height: " . 2*$height/3 . "px; line-height: " . 2*$height/3 . "px; padding-bottom: " . $height/3 . "px;}\n";
+      $css_content .= "#md-megamenu-" . $mid . " .mm-arrow {top: 36%}\n";
     }
     else {
-      $css_content .= "#megamenu-" . $mid . " .mm-item > a {height: " . $height . "px; line-height: " . $height . "px}\n";
+      $css_content .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a {height: " . $height . "px; line-height: " . $height . "px}\n";
     }
   }
 
@@ -220,9 +222,9 @@ function generate_menu_css_configure($mid, $menu_settings) {
   # Css for vertical menu
   if ($menu_settings['general']['dmg_orientation'] == 'vertical' &&  $menu_settings['general']['dmg_submenuw'] != '') {
     $css_content .= "@media (min-width: {$menu_settings['responsive']['res_width']}px) {";
-    $css_content .= "#megamenu-" . $mid . ".md-vertical ul.megamenu {width: " . $menu_settings['general']['dmg_submenuw'] . "px}\n }";
+    $css_content .= "#md-megamenu-" . $mid . ".md-vertical ul.megamenu {width: " . $menu_settings['general']['dmg_submenuw'] . "px}\n }";
     if ($menu_settings['design']['top_dms_bgc'] != "") {
-      $css_content .= "#megamenu-" . $mid . ".md-vertical ul.megamenu > li {background-color: #" . $menu_settings['design']['top_dms_bgc'] . "}";
+      $css_content .= "#md-megamenu-" . $mid . ".md-vertical ul.megamenu > li {background-color: #" . $menu_settings['design']['top_dms_bgc'] . "}";
     }
 
   }
@@ -232,15 +234,15 @@ function generate_menu_css_configure($mid, $menu_settings) {
   if ($menu_settings['general']['dmg_fixed']) {
     if (!$menu_settings['general']['dmg_fullwidth'] && $menu_settings['general']['dmg_customwidth'] != '') {
       $width = (int)$menu_settings['general']['dmg_customwidth'];
-      $css_content .= "#megamenu-" . $mid . ".mm-fixed-top,\n";
-      $css_content .= "#megamenu-" . $mid . ".mm-fixed-bottom {\n";
+      $css_content .= "#md-megamenu-" . $mid . ".mm-fixed-top,\n";
+      $css_content .= "#md-megamenu-" . $mid . ".mm-fixed-bottom {\n";
       $css_content .= "width: " . $width . "px;\n";
       $css_content .= "margin-left: -" . (int)$width/2 . "px;\n";
       $css_content .= "}\n";
     }
 
     if ($height != 0 || $width != 0) {
-      $css_content .= "#megamenu-" . $mid . " .mm-toggle {\n";
+      $css_content .= "#md-megamenu-" . $mid . " .mm-toggle {\n";
       $css_content .= ($height != 0) ? "height: " . $height . "px;\n" : "";
       $css_content .= ($width != 0) ? "margin: 0 auto 0 " . (int)(30 + $width/2) . "px;\n" : "";
       $css_content .= ($width != 0) ? "left: 50%; right: auto;\n" : "";
@@ -252,11 +254,19 @@ function generate_menu_css_configure($mid, $menu_settings) {
   $css_content .= $menu_settings['design']['dms_custom'];
 
   # Add custom responsive
-  $css_content .= '#megamenu-'.$mid.' .mdtoggle-nav{color:  #'.$responsive['res_text_color'].'; background: #'.$responsive['res_bar_color'].';}';
+  $responsive_css = '';
+  if (isset($responsive['res_text_color']) && $responsive['res_text_color'])
+    $responsive_css .= "color: #{$responsive['res_text_color']};";
+  if (isset($responsive['res_bar_color']) && $responsive['res_bar_color'])
+    $responsive_css .= "background-color: #{$responsive['res_bar_color']};";
+  if ($responsive_css)
+    $css_content .= sprintf('#md-megamenu-%d .awemenu-bars {%s}', $mid, $responsive_css);
+  
   # Create file custom css for menu
   $public_folder = variable_get('file_public_path', conf_path() . '/files');
   file_put_contents($public_folder . '/megamenu-' . $mid . '-custom.css', $css_content);
 
+  return $css_content;
   # Could not create file when run on IIS
   #file_save_data($css_content, 'public://megamenu-' . $mid . '-custom.css', FILE_EXISTS_REPLACE);
 }
@@ -265,17 +275,18 @@ function generate_css_by_level($level, $settings) {
   $output = "";
 
   if ($settings[$level . '_dms_bgc'] != '') {
-    $output = "background-color: #" . $settings[$level . '_dms_bgc'] . ";\n";
+    $output = "\tbackground-color: #" . $settings[$level . '_dms_bgc'] . ";\n";
   }
 
   if ($level == 'hoveritem' && $settings['hoveritem_dms_tc'] != '') {
-    $output .= "color: #" . $settings['hoveritem_dms_tc'] . ";\n";
+    $output .= "\tcolor: #" . $settings['hoveritem_dms_tc'] . ";\n";
   }
 
   if ($settings[$level . '_border_radius_equal']) {
     if ($settings[$level . '_border_radius'] != '') {
-      $output .= "-webkit-border-radius: " . $settings[$level . '_border_radius'] . "px;\n";
-      $output .= "border-radius: " . $settings[$level . '_border_radius'] . "px;\n";
+      $output .= "\t-webkit-border-radius: " . $settings[$level . '_border_radius'] . "px;\n";
+      $output .= "\t-moz-border-radius: " . $settings[$level . '_border_radius'] . "px;\n";
+      $output .= "\tborder-radius: " . $settings[$level . '_border_radius'] . "px;\n";
     }
   }
   else {
@@ -286,8 +297,9 @@ function generate_css_by_level($level, $settings) {
       ($settings[$level . '_border_radius_br'] != '') ? $data .= $settings[$level . '_border_radius_br'] . "px " : "0px ";
       ($settings[$level . '_border_radius_bl'] != '') ? $data .= $settings[$level . '_border_radius_bl'] . "px " : "0px ";
 
-      $output .= "-webkit-border-radius: " . $data . ";\n";
-      $output .= "border-radius: " . $data . ";\n";
+      $output .= "\t-webkit-border-radius: " . $data . ";\n";
+      $output .= "\t-moz-border-radius: " . $data . ";\n";
+      $output .= "\tborder-radius: " . $data . ";\n";
     }
   }
 
@@ -296,7 +308,7 @@ function generate_css_by_level($level, $settings) {
       if ($border === 0) {
         continue;
       }
-      $data = "border-" . $border . ": " . $settings[$level . '_border_size'] . "px " . $settings[$level . '_border_type'] . " ";
+      $data = "\tborder-" . $border . ": " . $settings[$level . '_border_size'] . "px " . $settings[$level . '_border_type'] . " ";
       $data .= ($settings[$level . '_border_color'] != '') ? "#" . $settings[$level . '_border_color'] : "#FFF";
       $data .= ";\n";
       $output .= $data;
@@ -315,32 +327,32 @@ function generate_top_link_style($mid, $menu_settings) {
   if ($fonts['typo_top_level'] != '') {
     $font_top = explode("|", $fonts['typo_top_level']);
     if (end($font_top) != '') {
-      $output .= "#megamenu-" . $mid . " .mm-item > a {" . end($font_top) . "}\n";
+      $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a {" . end($font_top) . "}\n";
     }
   }
 
   $response = generate_link_style('top', 'regular', $fonts, $design);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " .mm-item > a,\n";
-    $output .= "#megamenu-" . $mid . " .mm-item > a:link {\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a,\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a:link {\n";
     $output .= $response . "}\n";
   }
 
   $response = generate_link_style('top', 'rollover', $fonts);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " .mm-item > a:hover {\n" . $response . "}\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a:hover {\n" . $response . "}\n";
   }
 
   $response = generate_link_style('top', 'visited', $fonts);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " .mm-item > a:visited {\n" . $response . "}\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a:visited {\n" . $response . "}\n";
   }
 
   $response = generate_link_style('top', 'on', $fonts);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " .mm-item > a:focus,\n";
-    $output .= "#megamenu-" . $mid . " .mm-item > a:active,\n";
-    $output .= "#megamenu-" . $mid . " .mm-item > a.active {\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a:focus,\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a:active,\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-item-level-1 > a.active {\n";
     $output .= $response . "}\n";
   }
 
@@ -354,26 +366,26 @@ function generate_sub_link_style($mid, $menu_settings) {
 
   $response = generate_link_style('sub', 'regular', $fonts, $design);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " div.mm-container a,\n";
-    $output .= "#megamenu-" . $mid . " div.mm-container a:link {\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu a,\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu a:link {\n";
     $output .= $response . "}\n";
   }
 
   $response = generate_link_style('sub', 'rollover', $fonts);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " div.mm-container a:hover {\n" . $response . "}\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu a:hover {\n" . $response . "}\n";
   }
 
   $response = generate_link_style('sub', 'visited', $fonts);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " div.mm-container a:visited {\n" . $response . "}\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu a:visited {\n" . $response . "}\n";
   }
 
   $response = generate_link_style('sub', 'on', $fonts);
   if ($response != '') {
-    $output .= "#megamenu-" . $mid . " div.mm-container a:focus,\n";
-    $output .= "#megamenu-" . $mid . " div.mm-container a:active,\n";
-    $output .= "#megamenu-" . $mid . " div.mm-container a.active {\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu a:focus,\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu a:active,\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu a.active {\n";
     $output .= $response . "}\n";
   }
 
@@ -421,16 +433,16 @@ function generate_header_style($mid, $settings) {
     if ($settings['h' . $i . '_sub_level'] != '') {
       $font = explode('|', $settings['h' . $i . '_sub_level']);
       if (end($font) != '') {
-        $data_item .= end($font) . "\n";
+        $data_item .= "\t" . end($font) . "\n";
       }
     }
 
     if ($settings['h' . $i . '_sub_level_color'] != '') {
-      $data_item .= "color: #" . $settings['h' . $i . '_sub_level_color'] . ";\n";
+      $data_item .= "\tcolor: #" . $settings['h' . $i . '_sub_level_color'] . ";\n";
     }
 
     if ($data_item != "") {
-      $output .= "#megamenu-" . $mid . ".mdmegamenu h" . $i . " {\n";
+      $output .= "#md-megamenu-" . $mid . " h" . $i . " {\n";
       $output .= $data_item . "}\n";
     }
 
@@ -440,15 +452,15 @@ function generate_header_style($mid, $settings) {
   $sub_header = "";
   if ($settings['header_sub_level'] != '') {
     $font = explode('|', $settings['header_sub_level']);
-    $sub_header .= (end($font) != '') ? end($font) . "\n" : '';
+    $sub_header .= (end($font) != '') ? "\t" . end($font) . "\n" : '';
   }
 
   if ($settings['header_sub_level_color'] != '') {
-    $sub_header .= "color: #" . $settings['header_sub_level_color'] . ";\n";
+    $sub_header .= "\tcolor: #" . $settings['header_sub_level_color'] . ";\n";
   }
 
   if ($sub_header != "") {
-    $output .= "#megamenu-" . $mid . " .mm-sub h3.mm-header {\n" . $sub_header . "}\n";
+    $output .= "#md-megamenu-" . $mid . " .awemenu-submenu h3.mm-header {\n" . $sub_header . "}\n";
   }
 
   return $output;
@@ -541,12 +553,15 @@ function sort_modules(&$modules) {
   $modules = $sorted + $modules;
 }
 
-function is_active_link($path, $current) {
+function is_active_link($path, $compare_url = '') {
   $is_active = FALSE;
+
+  // set comparse url is current path if not pass compare_url
+  if (!$compare_url)
+    $compare_url = current_path();
+
   switch ($path) {
     case '#':
-      break;
-
     case '':
       break;
 
@@ -557,11 +572,14 @@ function is_active_link($path, $current) {
       break;
 
     default:
-      $current = url($current, array('absolute' => TRUE));
-      $path = url($path, array('absolute' => TRUE));
-      if ($path == $current || strpos($current, $path)!== FALSE) {
+      $compare_url = url($compare_url, array('absolute' => TRUE));
+
+      $parsed_path = _md_megamenu_parse_url($path);
+      $path = url($parsed_path['path'], array('absolute' => TRUE));
+      if ($path == $compare_url) {
         $is_active = TRUE;
       }
+      break;
   }
 
   return $is_active;
@@ -634,4 +652,25 @@ function _md_megamenu_include_media_browser_js() {
   // Add wysiwyg-specific settings.
   $settings = array('wysiwyg_allowed_attributes' => variable_get('media__wysiwyg_allowed_attributes', array('height', 'width', 'hspace', 'vspace', 'border', 'align', 'style', 'class', 'id', 'usemap', 'data-picture-group', 'data-picture-align')));
   drupal_add_js(array('media' => $settings), 'setting');
+}
+
+/**
+ * callback to process item path
+ */
+function _md_megamenu_parse_url($path = '') {
+  $output = array('path' => '', 'query' => array(), 'fragment' => '');
+
+  if ($path) {
+    $path = urldecode($path);
+    $path_elements = parse_url($path);
+
+    if (isset($path_elements['path']))
+      $output['path'] = $path_elements['path'];
+    if (isset($path_elements['query']))
+      parse_str($path_elements['query'], $output['query']);
+    if (isset($path_elements['fragment']))
+      $output['fragment'] = $path_elements['fragment'];
+  }
+
+  return $output;
 }

@@ -6,7 +6,7 @@
         <?php print $item->title ?>
     </h3>
 <?php elseif ($type == 'img' && $item->img_path != ''): ?>
-    <div>
+    <div class="mm-image">
         <?php print theme('image', array('path' => file_create_url($item->img_path), 'alt' => $item->img_alt, 'attributes' => array('class' => $item->class))); ?>
     </div>
 <?php elseif ($type == 'a'): ?>
@@ -14,11 +14,11 @@
         <?php if ($item->a_icon != ''): ?>
             <?php print theme('image', array('path' => file_create_url($item->a_icon))); ?>
         <?php endif; ?>
-        <?php print l($item->a_title, $item->a_path, array('attributes' => $item->attributes)); ?>
+        <?php print l($item->a_title, $item->a_path, array('attributes' => $item->attributes, 'fragment' => $item->fragment, 'query' => $item->query)); ?>
     </div>
 <?php elseif ($type == 'video'): ?>
-    <div class="video-container">
-        <iframe src="<?php print $item->video_link; ?>" frameborder="0"
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="<?php print $item->video_link; ?>" frameborder="0"
                 allowfullscreen<?php print $item->parameters ?>></iframe>
     </div>
 <?php elseif ($type == 'html'): ?>

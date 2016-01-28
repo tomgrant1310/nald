@@ -743,10 +743,10 @@ ul.mm-container a:hover .mm-arrow {
   position: absolute;
   background: url(../images/mm-toggle-sub.png) no-repeat 50% 50%;
   margin: auto;
-  top: 8px;
+  top: 5px;
   right: 10px;
-  width: 25px;
-  height: 25px;
+  width: 31px;
+  height: 31px;
   z-index: 999;
   cursor: pointer;
   background-color: rgba(255,255,255,.2);
@@ -757,8 +757,15 @@ ul.mm-container a:hover .mm-arrow {
        -o-transition: all .3s ease;
           transition: all .3s ease;
 }
+.mm-hover .mdtoggle-sub {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
 .mdtoggle-sub:hover {
-  background-color: rgba(255,255,255);
+  /*background-color: rgba(255,255,255);*/
 }
 .mdmegamenu.mm-responsive .mdtoggle-sub{
   display: block;
@@ -850,4 +857,10 @@ ul.mm-container a:hover .mm-arrow {
 .mm-dropdown ul li.mm-parent.contrary > ul.mm-container {
 top: 0;
 left: -220px;
+}
+.deactive .mm-container {
+  display: none !important;
+}
+.active > .mm-container {
+  display: block !important;
 }

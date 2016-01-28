@@ -91,7 +91,7 @@
 	color: #000;
 }
 
-.md-style3 .mm-sub h3.mm-header {
+.md-style3 h3.mm-header {
     color: #333;
 	font-size: 12px;
     font-weight: bold;
@@ -260,4 +260,12 @@
 }
 .md-style3.mm-fixed-bottom ul.mm-container .mm-arrow {
     background-position: -19px 0;
+}
+
+.md-style3 .mm-active .mdtoggle-sub,
+.md-style3 .mdtoggle-sub {
+    background-color: rgba(0,0,0,.4);
+}
+.md-style3 .mm-hover .mdtoggle-sub {
+    background-color: rgba(255,255,255,.3);
 }

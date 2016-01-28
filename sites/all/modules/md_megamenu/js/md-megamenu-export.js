@@ -1,17 +1,1 @@
-/**
- * @file
- * @author Duynv
- * Date: 4/9/13
- */
-(function($) {
-    Drupal.behaviors.export_import_cuteslider = {
-        attach: function(context, settings) {
-            $('input[name=export-button]', context).click(function() {
-                var selected = $('#edit-menus input:checked', context).val();
-                $.post(settings.basePath+'?q=admin/structure/md-megamenu/export-data', {mids: selected}, function(response) {
-                    $('#edit-export-data', context).val(response);
-                });
-            });
-        }
-    }
-})(jQuery);
+(function(a){Drupal.behaviors.export_import_cuteslider={attach:function(b,c){a("input[name=export-button]",b).click(function(){var d=a("#edit-menus input:checked",b).val();a.post(c.basePath+"?q=admin/structure/md-megamenu/export-data",{mids:d},function(e){a("#edit-export-data",b).val(e)})})}}})(jQuery);

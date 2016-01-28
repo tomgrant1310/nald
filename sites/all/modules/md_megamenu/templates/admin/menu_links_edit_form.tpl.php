@@ -5,7 +5,7 @@
 		<?php if (count($menu_tabs) > 0):?><!-- begin render tabs link -->
 			<ul class="md-tabs-head clearfix">
 			<?php foreach($menu_tabs as $key => $tab):?>
-  			<li class="tab-item first clearfix">
+  			<li class="tab-item clearfix<?php if($tab->settings['general']['item_position'] == 'right') print ' mm-item-right';?>">
     			<a class="tab-link" href="#tabs-<?php print $key+1;?>">
     			  <span class="tab-text"><?php print $tab->settings['general']['title'];?></span>
     		  </a>
@@ -195,7 +195,7 @@
 			  <div id="<?php print $module; ?>" class="connectedSortable clearfix">
 			  <?php foreach ($blocks as $block): ?>
 			    <div class="md-bl block-item ei-processed">
-			      <input id="block-<?php print $block->bid;?>" class="setting" type="hidden" value="type=block&title=<?php print $block->info; ?>&block_id=<?php print $block->delta; ?>&block_module=<?php print $block->module; ?>&block_bid=<?php print $block->bid;?>" />
+			      <input id="block-<?php print $block->bid;?>" class="setting" type="hidden" value='type=block&title=<?php print $block->info; ?>&block_id=<?php print $block->delta; ?>&block_module=<?php print $block->module; ?>&block_bid=<?php print $block->bid;?>' />
 			      <a class="handle">+</a>
 			      <span class="ei-label"><?php print $block->info; ?></span>
             <a class="bl-remove" href="#"></a>

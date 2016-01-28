@@ -11,10 +11,15 @@
 function template_preprocess_menu_admin_form(&$variables) {
   $url_parts = explode('/', $_GET['q']);
   $variables['menu'] = MDMegaMenu::getById($url_parts[array_search('md-megamenu', $url_parts) + 1]);
-  $tabs= MDMegaTab::getTabsByMenu($variables['menu']->mid);
+  $tabs = MDMegaTab::getTabsByMenu($variables['menu']->mid);
 
   $blocks_added = array();
   foreach ($tabs as $tab) {
+    $general_settings = $tab->settings['general'];
+    $layout_settings = $tab->settings['layout'];
+    
+
+    // process layout settings
     foreach ($tab->settings['layout']['rows_setting'] as &$row_settings) {
       if (is_array($row_settings)) {
         $row_settings = (object)$row_settings;
@@ -43,7 +48,6 @@ function template_preprocess_menu_admin_form(&$variables) {
       }
     }
   }
-
   $variables['menu_tabs']  = $tabs;
 
   $theme_default = variable_get('theme_default', 'bartik');

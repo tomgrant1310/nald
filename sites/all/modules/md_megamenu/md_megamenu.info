@@ -6,6 +6,6 @@ files[] = md_megamenu.module
 dependencies[] = media
 
 project status url = http://megadrupal.com/fserver
-version = "7.x-1.15"
+version = "7.x-1.18"
 core = "7.x"
 project = "md_megamenu"

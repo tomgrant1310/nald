@@ -1,4 +1,3 @@
-
 <div id="megamenu-<?php print $mid; ?>" class="<?php print $menu_classes; ?>"
      data-type-responsive="<?php print $menu_settings['responsive']['res_width']; ?>">
   <span

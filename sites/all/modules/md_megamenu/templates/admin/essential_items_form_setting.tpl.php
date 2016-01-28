@@ -8,13 +8,13 @@
               	<label for="title">Header title</label>
               	<input type="text" name="title" id="title" class="form-text" value="<?php print isset($parameters["title"]) ? $parameters["title"] : ''?>" />
               </div>
-              <div class="form-item file-upload form-menuitemicon">
+              <div class="form-item file-upload form-menuitemicon clearfix">
                   <div class="image-preview">
-                  <?php if (isset($parameters["h_icon"])):?>
-                    <img src="<?php print get_icon_url($parameters["h_icon"])?>" />
+                  <?php if (isset($parameters["h_icon"]) && $icon_url = get_icon_url($parameters["h_icon"])):?>
+                    <img src="<?php print $icon_url;?>" />
                   <?php endif;?>
                   </div>
-                  <a href="#" class="choose-image-link">Choose icon image</a>
+                  <a href="#" class="select-image-button choose-image-link">Choose icon image</a>
                   <input name="h_icon" type="hidden" class="form-text" value="<?php print isset($parameters["h_icon"]) ? $parameters["h_icon"] : ''?>" />
               </div>
               <div class="form-item form-cssclasses">
@@ -29,15 +29,18 @@
         <form>
           <fieldset class="ui-helper-reset">
             <input type="hidden" name="type"  value="img" />
-            <div class="image-preview">
-              <?php if (isset($parameters["img_path"])):?>
-                <img src="<?php print get_icon_url($parameters["img_path"])?>" />
-              <?php endif;?>
+            <div class="form-item clearfix">
+              <div class="image-preview">
+                <?php if (isset($parameters["img_path"])&& $image_path = get_icon_url($parameters["img_path"])):?>
+                  <img src="<?php print $image_path; ?>" />
+                <?php endif;?>
+              </div>
+              <a href="#" class="select-image-button choose-image-link">Select Image</a>
+              <input type="hidden" name="img_path"  value="<?php print isset($parameters["img_path"]) ? $parameters["img_path"] : ''?>" />
             </div>
-            <a href="#" class="choose-image-link">Choose icon image</a>
-            <input type="hidden" name="img_path"  value="<?php print isset($parameters["img_path"]) ? $parameters["img_path"] : ''?>" />
             <div class="form-item">
               <?php $img_style = isset($parameters["img_style"]) ? $parameters["img_style"] : ''?>
+              <label for="img_style">Image style</label>
               <select name="img_style">
                 <option value=""<?php print ($img_style == '') ? ' selected="selected"' : ""?>>None (Original image)</option>
                 <?php foreach (image_style_options(FALSE) as $key => $val): ?>
@@ -82,18 +85,23 @@
                 	<option value="_top"<?php print ($target == "_top") ? ' selected="selected"' : ""?>>_top</option>
                 </select>
               </div>
-              <div class="form-item file-upload form-menuitemicon">
+              <div class="form-item file-upload form-menuitemicon clearfix">
                 <div class="image-preview">
-                  <?php if (isset($parameters["a_icon"])):?>
-                    <img src="<?php print get_icon_url($parameters["a_icon"])?>" />
+                  <?php if (isset($parameters["a_icon"]) && $icon_url = get_icon_url($parameters["a_icon"])):?>
+                    <img src="<?php print $icon_url; ?>" />
                   <?php endif;?>
                 </div>
-                <a href="#" class="choose-image-link">Choose icon image</a>
+                <a href="#" class="select-image-button choose-image-link">Choose icon image</a>
                 <input type="hidden" name="a_icon" class="form-text" value="<?php print isset($parameters["a_icon"]) ? $parameters["a_icon"] : ''?>" />
               </div>
               <div class="form-item form-cssclasses">
 				        <label for="img_class">CSS Classes</label>
               	<input type="text" name="class" id="img_class" class="form-text" value="<?php print isset($parameters["class"]) ? $parameters["class"] : ''?>" />
+              </div>
+              <div class="form-item"<?php if (!isset($parameters["a_submenu_width"])) print ' style="display: none;"';?> >
+                <label for="item-submenu-width">Submenu width</label>
+                <input type="text" name="item_submenu_width" id="item-submenu-width" class="form-text w60" value="<?php print isset($parameters["a_submenu_width"]) ? $parameters["a_submenu_width"] : ''?>" />
+                <span class="field-suffix">px</span>
               </div>
             </fieldset>
           </form>

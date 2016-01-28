@@ -229,3 +229,11 @@
 .md-style2.mm-fixed-bottom ul.mm-container .mm-arrow {
     background-position: -15px 0;
 }
+
+.md-style2 .mm-active .mdtoggle-sub,
+.md-style2 .mdtoggle-sub {
+    background-color: rgba(255,255,255,.3);
+}
+.md-style2 .mm-hover .mdtoggle-sub {
+    background-color: rgba(0,0,0,.8);
+}

@@ -1,8 +1,8 @@
 <?php if ($item): ?>
   <?php $type = $item->type;?>
-  <?php if ($type == "block"):?>
+  <?php if ($type == "block" && isset($item->block_id) && $item->block_id):?>
     <div id="md-bl<?php print $item->block_id;?>" class="md-bl block-item ei-processed" style="display: block;">
-      <input id="block-<?php print $item->block_id;?>" type="hidden" class="setting" value="type=block&title=<?php print $item->title;?>&block_id=<?php print $item->block_id;?>&block_module=<?php print $item->block_module;?>&block_bid=<?php print $item->block_bid;?>" />
+      <input id="block-<?php print $item->block_id;?>" type="hidden" class="setting" value='type=block&title=<?php print $item->title;?>&block_id=<?php print $item->block_id;?>&block_module=<?php print $item->block_module;?>&block_bid=<?php print $item->block_bid;?>' />
       <a class="handle">+</a>
       <span class="ei-label"><?php print $item->title;?></span>
       <a class="bl-remove" href="#"></a>
