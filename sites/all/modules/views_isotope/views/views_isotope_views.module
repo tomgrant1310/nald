@@ -12,3 +12,13 @@ function views_isotope_views_views_api() {
     'api' => 2.0,
   );
 }
+
+/**
+ * Implements hook_views_infinite_scroll_selectors_alter().
+ */
+function views_isotope_views_views_infinite_scroll_selectors_alter(&$content_selector, &$items_selector, $plugin_name) {
+  if ($plugin_name == 'isotope_grid') {
+    $content_selector = 'div.view-content > div.item-list > ul.isotope-container';
+    $items_selector = 'li.isotope-element';
+  }
+}

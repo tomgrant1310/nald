@@ -33,17 +33,13 @@ class ViewsIsotopeViewsPluginStyleIsotopeGrid extends views_plugin_style_list {
       return;
     }
 
-    $available_configs = ctools_export_crud_load_all('isotope_configurations');
-    foreach ($available_configs as $key => $value) {
-      $available_configs[$key] = $value->admin_title;
-    }
     $form['config'] = array(
       '#type' => 'select',
-      '#options' => $available_configs,
+      '#options' => views_isotope_available_configs(),
       '#title' => t('Choose Isotope Configuration'),
       '#default_value' => !empty($this->options['config']) ? $this->options['config'] : 'isotope_default_config',
       '#required' => TRUE,
-      '#description' => l(t('Manage Configurations'), 'admin/structure/isotope'),
+      '#description' => l(t('Manage Configurations'), 'admin/config/user-interface/isotope'),
     );
 
     $field_names = $this->display->handler->get_field_labels();
