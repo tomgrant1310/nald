@@ -870,3 +870,30 @@ img {
 .awemenu-nav.md-mobile-style4 .form-item label, .awemenu-nav.md-mobile-style4 .mm-radio, .awemenu-nav.md-mobile-style4 ul li a {
   color: #333;
 }
+
+/* seperator */
+.md-separator,
+.md-separator-text{
+  border-bottom: 1px solid #eee;
+  margin: 10px 0 20px;
+}
+.md-separator-text {
+  position: relative;
+  top: -20px;
+}
+.md-separator-text div {
+  display: inline-block;
+  background-color: #ffffff;
+  padding: 1px 12px;
+  position: relative;
+  top: 10px;
+}
+.md-separator-aligncenter {
+  text-align: center;
+}
+.md-separator-alignleft {
+  text-align: left;
+}
+.md-separator-alignright {
+  text-align: right;
+}
