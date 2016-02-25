@@ -41,7 +41,10 @@ function template_preprocess_views_isotope_views_filter(&$vars) {
     $label = $vars['rows'][$key];
     $fieldname = $vars['options']['data_fields'];
     $filter_value = views_isotope_views_helper_get_field_value($value, $fieldname);
-    $items[$filter_value] = $label;
+    if (!empty($filter_value) && !empty($label)) {
+      $filter_value = is_array($filter_value) ? implode(',', $filter_value) : $filter_value;
+      $items[$filter_value] = $label;
+    }
   }
 
   $output = array(
@@ -95,9 +98,9 @@ function template_preprocess_views_isotope_views_sorter(&$vars) {
  */
 function views_isotope_views_helper_get_field_value($entity, $fieldname) {
   if (!empty($entity->{'field_' . $fieldname})) {
-    foreach($entity->{'field_' . $fieldname} as $a) {
-      if(!empty($a['rendered'])) {
-        $field[] = $a['rendered'];
+    foreach ($entity->{'field_' . $fieldname} as $a) {
+      if (!empty($a['rendered'])) {
+        $field[] = render($a['rendered']);
       }
     }
   }
@@ -105,18 +108,18 @@ function views_isotope_views_helper_get_field_value($entity, $fieldname) {
     // Term title is not a real field in D7.
     $field[$fieldname] = $entity->{'taxonomy_term_data_' . $fieldname};
   }
+  elseif (!empty($entity->{'node_' . $fieldname})) {
+    $field[$fieldname] = $entity->{'node_' . $fieldname};
+  }
 
   if (isset($field)) {
     $r = array();
-    if(!is_array($field)) {
+    if (!is_array($field)) {
       $field = array($field);
     }
-    foreach($field as $f) {
+    foreach ($field as $f) {
       $filter_value = render($f);
       $r[] = trim(check_plain(strip_tags($filter_value)));
-    }
-    if(count($r) == 1){
-      return $r[0];
     }
     return $r;
   }

@@ -43,11 +43,13 @@ function views_isotope_default_isotope_configuration() {
   $config->admin_title = 'Default config';
   $config->layoutMode = 'masonry';
   $config->transitionDuration = NULL;
+  $config->urlFilters = NULL;
   $config->isFitWidth = NULL;
   $config->isHorizontal = NULL;
-  $config->stamp = NULL;
+  $config->stamp = '.stamp';
   $config->horizontalAlignment = NULL;
   $config->verticalAlignment = NULL;
+  $config->isOriginLeft = 1;
 
   // If imagesLoaded is available, add it by default.
   if (views_isotope_check_additional_libraries('imagesLoaded')) {
@@ -72,6 +74,51 @@ function views_isotope_ctools_plugin_directory($module, $type) {
 }
 
 /**
+ * Implements hook_context_plugins().
+ */
+function views_isotope_context_plugins() {
+  $plugins = array();
+  $plugins['isotope_reaction'] = array(
+    'handler' => array(
+      'path' => drupal_get_path('module', 'views_isotope') . '/plugins/context',
+      'file' => 'views_isotope_reaction.inc',
+      'class' => 'isotope_reaction',
+      'parent' => 'context_reaction',
+    ),
+  );
+  return $plugins;
+}
+
+/**
+ * Implements hook_context_registry().
+ */
+function views_isotope_context_registry() {
+  return array(
+    'reactions' => array(
+      'isotope' => array(
+        'title' => t('Isotope'),
+        'description' => t('Set an Isotope configuration.'),
+        'plugin' => 'isotope_reaction',
+      ),
+    ),
+  );
+}
+
+/**
+ * Return a list of available configs.
+ *
+ * @return array
+ *   A list of available configs in a format ready for a select element.
+ */
+function views_isotope_available_configs() {
+  $available_configs = ctools_export_crud_load_all('isotope_configurations');
+  foreach ($available_configs as $key => $value) {
+    $available_configs[$key] = $value->admin_title;
+  }
+  return $available_configs;
+}
+
+/**
  * Convert the name of a config into a JSON representation.
  *
  * Style as per http://isotope.metafizzy.co/#initialize-in-html.
@@ -80,20 +127,24 @@ function views_isotope_get_config_json($config, array $additional_attributes) {
   ctools_include('export');
   $plugin = ctools_export_crud_load('isotope_configurations', $config);
 
+  // Properties that should be passed directly to isotope.
   $allowed_attributes = array(
     'layoutMode',
     'transitionDuration',
+    'urlFilters',
     'isFitWidth',
     'isHorizontal',
     'stamp',
     'horizontalAlignment',
     'verticalAlignment',
+    'isOriginLeft',
   );
 
   // Default attributes.
   $attributes = array(
-    'columnWidth' => 200,
+    'columnWidth' => '.isotope-grid-sizer',
     'itemSelector' => '.isotope-element',
+    'gutter' => '.isotope-gutter-sizer',
   ) + $additional_attributes;
 
   foreach ($plugin as $key => $value) {
@@ -169,18 +220,6 @@ function views_isotope_additional_libraries_list() {
     'type' => 'plugin',
     'url' => 'http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js',
     'description' => t('Detect when images have been loaded. (Requires jQuery version 1.9 or later.)'),
-  );
-  $libraries['infinite-scroll'] = array(
-    'filename' => 'jquery.infinitescroll.min.js',
-    'type' => 'plugin',
-    'url' => 'https://github.com/infinite-scroll/infinite-scroll/blob/master/jquery.infinitescroll.min.js',
-    'description' => t('Infinite scroll has been called autopagerize, unpaginate, endless pages. But essentially it is pre-fetching content from a subsequent page and adding it directly to the user’s current page.'),
-  );
-  $libraries['jquery-bbq'] = array(
-    'filename' => 'jquery.ba-bbq.min.js',
-    'type' => 'plugin',
-    'url' => 'https://raw.githubusercontent.com/cowboy/jquery-bbq/master/jquery.ba-bbq.min.js',
-    'description' => t('jQuery BBQ leverages the HTML5 hashchange event to allow simple, yet powerful bookmarkable #hash history. In addition, jQuery BBQ provides a full .deparam() method, along with both hash state management, and fragment / query string parse and merge utility methods.'),
   );
   return $libraries;
 }
@@ -274,9 +313,9 @@ function views_isotope_check_url($url) {
 function views_isotope_sanitize($raw) {
   $safe = $raw;
 
-  if(is_array($raw)) {
+  if (is_array($raw)) {
     $safe = array();
-    foreach($raw as $i) {
+    foreach ($raw as $i) {
       $safe[] = views_isotope_sanitize($i);
     }
     return implode(' ', $safe);
@@ -343,16 +382,29 @@ function views_isotope_theme($existing, $type, $theme, $path) {
  *   Markup.
  */
 function theme_isotope_grid(array $vars) {
+  // A config name specified in context will override whatever we have been
+  // passed.
+  $config_name = $vars['config'];
+  if (module_exists('context')) {
+    if ($plugin = context_get_plugin('reaction', 'isotope')) {
+      $context_name = $plugin->execute();
+      if (!empty($context_name)) {
+        $config_name = $context_name;
+      }
+    }
+  }
+
   // Add the sorting options to the initial configuration.
   $additional_config = array('getSortData' => array());
   foreach ($vars['items'] as $item) {
+    $item['data'] = !empty($item['data']) ? $item['data'] : array();
     foreach ($item['data'] as $key => $value) {
       $additional_config['getSortData'][$key] = '.' . $key;
     }
   }
 
   // Retrieve the desired configuration (plus sorting options).
-  $config = views_isotope_get_config_json($vars['config'], $additional_config);
+  $config = views_isotope_get_config_json($config_name, $additional_config);
 
   // Make sure the instance name is unique per page load.
   $global_instances = &drupal_static(__FUNCTION__);
@@ -379,6 +431,7 @@ function theme_isotope_grid(array $vars) {
 
   foreach ($vars['items'] as $item) {
     $sorts = '';
+    $item['data'] = !empty($item['data']) ? $item['data'] : array();
     foreach ($item['data'] as $key => $value) {
       if (!is_array($value)) {
         $value = array($value);
@@ -411,7 +464,7 @@ function theme_isotope_grid(array $vars) {
     ),
   );
 
-  views_isotope_addjs($vars['config']);
+  views_isotope_addjs($config_name);
   return drupal_render($return);
 }
 
@@ -425,6 +478,7 @@ function theme_isotope_grid(array $vars) {
  *   Markup.
  */
 function theme_isotope_filter(array $vars) {
+  $multi_field_logic = 'OR';
   $attributes['class'] = 'isotope-options clearfix';
   if (!empty($vars['instance'])) {
     $attributes['data-instance-id'] = 'isotope-instance-' . $vars['instance'];
@@ -448,11 +502,20 @@ function theme_isotope_filter(array $vars) {
   ));
 
   foreach ($vars['items'] as $key => $label) {
-    $key = views_isotope_sanitize($key);
+    $keys = explode(',', $key);
+    foreach ($keys as $k => $v) {
+      $keys[$k] = '.' . views_isotope_sanitize($v);
+    }
+    if ($multi_field_logic == 'OR') {
+      $keys = implode(', ', $keys);
+    }
+    else {
+      $keys = implode('', $keys);
+    }
     $items[] = l($label, '', array(
       'attributes' => array(
         'class' => 'filterbutton',
-        'data-filter' => '.' . $key,
+        'data-filter' => $keys,
       ),
       'fragment' => 'filter',
       'external' => TRUE,

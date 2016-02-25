@@ -4,101 +4,178 @@
  */
 
 (function ($) {
+  var isotopeActiveFilters = {};
+
+  function params_unserialize(p) {
+    if (typeof p == 'undefined') {
+      return {};
+    }
+    var ret = {},
+        seg = p.replace(/^\?/,'').split('&'),
+        len = seg.length, i = 0, s;
+    for (; i < len; i++) {
+      if (!seg[i]) {
+        continue;
+      }
+      s = seg[i].split('=');
+      ret[s[0]] = s[1];
+    }
+    return ret;
+  }
+
+  function isotope_add_hash(group, value, instanceID) {
+    var hash = window.location.href.split('#')[1];
+    var params = params_unserialize(hash);
+    if (typeof instanceID != 'undefined') {
+      params[group + '.' + instanceID] = value;
+    }
+    else {
+      params[group] = value;
+    }
+    location.hash = $.param(params);
+  }
+
+  function isotope_hash() {
+    var hash = window.location.href.split('#')[1];
+    var params = params_unserialize(hash);
+    $.each(params, function(key, value) {
+      var filterGroup = key.split('.')[0];
+      var instanceID = key.split('.')[1];
+      if (filterGroup == 'sort') {
+        var $selector = $(".isotope-options.sorts");
+        if (instanceID) {
+          $selector = $selector.filter("[data-instance-id='" + instanceID + "']");
+        }
+        if ($selector.length) {
+          // This sort option exists.
+          isotope_apply('sort', value, instanceID);
+        }
+      }
+      else {
+        var $selector = $(".isotope-options[data-filter-group='" + filterGroup + "']");
+        if (instanceID) {
+          var $selector = $selector.filter("[data-instance-id='" + instanceID + "']");
+        }
+        if ($selector.length) {
+          // This filter option exists.
+          isotope_apply('filter', value, instanceID, filterGroup);
+        }
+      }
+    });
+  }
+
+  function isotope_apply(type, value, instanceID, filterGroup) {
+    // Find all identical optionSets.
+    var $optionSets = $(".isotope-options");
+    if (type == 'filter') {
+      $optionSets = $optionSets.filter("[data-filter-group='" + filterGroup + "']");
+    }
+    if (type == 'sort') {
+      $optionSets = $optionSets.filter(".sorts");
+    }
+    var $container = $('.isotope-container');
+    if (typeof instanceID != 'undefined') {
+      var $optionSets = $optionSets.filter("[data-instance-id='" + instanceID + "']");
+      var $container = $('#' + instanceID);
+    }
+
+    // Apply class change to all identical optionsets.
+    $optionSets.find('.selected').removeClass('selected');
+    if (type == 'filter') {
+      $optionSets.find("[data-filter='" + value + "']").addClass('selected');
+      // Combine filters.
+      var applyValue = '';
+      isotopeActiveFilters[filterGroup] = value;
+      for (var prop in isotopeActiveFilters) {
+        applyValue += isotopeActiveFilters[ prop ];
+      }
+      $container.isotope({ filter: applyValue });
+    }
+    if (type == 'sort') {
+      $optionSets.find("[data-sort-by='" + value + "']").addClass('selected');
+      applyValue = value.split(',');
+      $container.isotope({ sortBy: applyValue });
+    }
+  }
+
   Drupal.behaviors.views_isotope = {
     attach:function(context, settings)
     {
-      // Pre-select first option in option sets.
-      $('.isotope-options > li:first-child > a').addClass('selected');
-
-      // Use imagesLoaded if it is available.
-      if (typeof imagesLoaded !== 'undefined') {
-        var container = document.querySelectorAll('.isotope-container');
-        imagesLoaded( container, function() {
-          $('.isotope-container').isotope('layout');
-        });
+      if ($('body', context).length == 0) {
+        // This is an ajax call, likely a prepend.
+        var $new_items = $(context).filter('.isotope-element');
+        if ($new_items.length) {
+          $('.isotope-container').isotope('appended', $new_items);
+        };
       }
 
-      // Store filter for each group.
-      var filters = {};
-      $('.isotope-options').delegate('.filterbutton', 'click', function(e) {
-        var $this = $(this);
+      var $container = $('.isotope-container', context);
+      if ($container.length) {
+        // Pre-select first option in option sets.
+        $('.isotope-options > li:first-child > a', context).addClass('selected');
 
-        // Don't proceed if already selected.
-        if ($this.hasClass('selected')) {
-          return false;
+        // Use imagesLoaded if it is available.
+        if (typeof imagesLoaded !== 'undefined') {
+          var container = $container.get();
+          imagesLoaded(container, function() {
+            if ($container.data('isotope')) {
+              $container.isotope('layout');
+            }
+          });
         }
 
-        // Identify what has been clicked.
-        var $optionSet = $this.parents('.isotope-options');
-        var filterGroup = $optionSet.attr('data-filter-group');
-        var instanceID = $optionSet.attr('data-instance-id');
+        // Config options that are not instance-specific.
+        var config = $container.data('isotope-options');
 
-        // Set filter for group.
-        filters[filterGroup] = $this.attr('data-filter');
-
-        // Find all identical optionSets.
-        if (typeof instanceID != 'undefined') {
-          var $optionSets = $(".isotope-options[data-filter-group='" + filterGroup + "'][data-instance-id='" + instanceID + "']");
-          var $container = $('#' + instanceID);
-        }
-        else {
-          var $optionSets = $(".isotope-options[data-filter-group='" + filterGroup + "']");
-          // If no instance is set, the filter should apply to all instances.
-          var $container = $('.isotope-container');
+        // Check for new hash values.
+        if (config.urlFilters == 1) {
+          window.onhashchange = isotope_hash;
+          isotope_hash();
         }
 
-        // Apply class change to all identical optionsets.
-        $optionSets.find('.selected').removeClass('selected');
-        $optionSets.find("[data-filter='" + filters[filterGroup] + "']").addClass('selected');
-
-        // Combine filters.
-        var filterValue = '';
-        for (var prop in filters) {
-          filterValue += filters[ prop ];
+        if (config.stamp) {
+          $container.isotope().isotope('stamp', $(config.stamp));
         }
 
-        // Set filter for Isotope.
-        $container.isotope({ filter: filterValue });
+        // Filter button click.
+        $('.isotope-options', context).delegate('.filterbutton:not(.selected)', 'click', function(e) {
+          var $this = $(this);
 
-        e.preventDefault();
-      });
+          // Identify what has been clicked.
+          var $optionSet = $this.parents('.isotope-options');
+          var filterGroup = $optionSet.attr('data-filter-group');
+          var instanceID = $optionSet.attr('data-instance-id');
+          var filterValue = $this.attr('data-filter');
 
-      // Apply Sorts.
-      $('.isotope-options').delegate('.sorterbutton', 'click', function(e) {
-        var $this = $(this);
+          if (config.urlFilters == 1) {
+            isotope_add_hash(filterGroup, filterValue, instanceID);
+          }
+          else {
+            isotope_apply('filter', filterValue, instanceID, filterGroup);
+          }
 
-        // Don't proceed if already selected.
-        if ($this.hasClass('selected')) {
-          return false;
-        }
+          e.preventDefault();
+        });
 
-        // Identify what has been clicked.
-        var $optionSet = $this.parents('.isotope-options');
-        var instanceID = $optionSet.attr('data-instance-id');
+        // Sort button click.
+        $('.isotope-options', context).delegate('.sorterbutton:not(.selected)', 'click', function(e) {
+          var $this = $(this);
 
-        // Find all identical optionSets.
-        if (typeof instanceID != 'undefined') {
-          var $optionSets = $(".isotope-options.sorts[data-instance-id='" + instanceID + "']");
-          var $container = $('#' + instanceID);
-        }
-        else {
-          var $optionSets = $(".isotope-options.sorts");
-          // If no instance is set, the filter should apply to all instances.
-          var $container = $('.isotope-container');
-        }
+          // Identify what has been clicked.
+          var $optionSet = $this.parents('.isotope-options');
+          var instanceID = $optionSet.attr('data-instance-id');
+          var sortValue = $this.attr('data-sort-by');
 
-        // Apply class change to all identical optionsets.
-        $optionSets.find('.selected').removeClass('selected');
-        $optionSets.find("[data-sort-by='" + $this.attr('data-sort-by') + "']").addClass('selected');
+          if (config.urlFilters == 1) {
+            isotope_add_hash('sort', sortValue, instanceID);
+          }
+          else {
+            isotope_apply('sort', sortValue, instanceID);
+          }
 
-        // Apply Sort.
-        var sortValue = $this.attr('data-sort-by');
-        // Make an array of values.
-        sortValue = sortValue.split(',');
-        $container.isotope({ sortBy: sortValue });
-
-        e.preventDefault();
-      });
+          e.preventDefault();
+        });
+      }
     }
   }
 }(jQuery));

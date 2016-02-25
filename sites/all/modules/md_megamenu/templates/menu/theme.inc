@@ -757,16 +757,17 @@ function md_megamenu_preprocess_awemenu_item(&$vars) {
     // add class define submenu is megamenu
     $vars['submenu_classes'][] = 'awemenu-megamenu';
 
-
     // create render array for submenu
     $rows = array();
     foreach ($submenu['layout']['rows_setting'] as $rid => $row) {
       $row_render = array();
       foreach ($row->cols as $cid => $column) {
-        $col_number = $column->length / 4;
+        $col_number = $column->length/4;
+        $column_style = render_col_style($column->style, $row->style);
         $column_render = array(
           'classes' => array("col-md-{$col_number}", 'col-xs-12'),
-          'content' => array()
+          'content' => array(),
+          'style' => $column_style[0]['bg']
         );
 
         // create render array for column contents
@@ -789,7 +790,10 @@ function md_megamenu_preprocess_awemenu_item(&$vars) {
 
         $row_render[] = $column_render;
       }
-      $rows[] = $row_render;
+      $rows[] = array(
+        'style' => render_row_style($row->style),
+        'columns' => $row_render
+      );
     }
 
     $vars['submenu_render'] = array(
@@ -964,11 +968,11 @@ function _md_megamenu_process_essential_item_data(&$item) {
       $item->video_link = urldecode($item->video_link);
       $iframe_par = "";
       if ($yt_id = md_megamenu_get_youtube_id_from_url($item->video_link)) {
-        $item->video_link = "http://www.youtube.com/embed/{$yt_id}";
+        $item->video_link = "https://www.youtube.com/embed/{$yt_id}";
         $iframe_par = ' frameborder="0" allowfullscreen';
       }
       elseif ($vimeo_id = md_megamenu_get_vimeo_id_from_url($item->video_link)) {
-        $item->video_link = "http://player.vimeo.com/video/{$vimeo_id}";
+        $item->video_link = "https://player.vimeo.com/video/{$vimeo_id}";
         $iframe_par = ' frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen';
       }
       $item->parameters = $iframe_par;
@@ -992,6 +996,7 @@ function _md_megamenu_process_essential_item_data(&$item) {
 
     case 'seperatortext':
       $item->seperator_text = urldecode($item->seperator_text);
+      $item->class = array('md-separator-text', 'md-separator-'.$item->seperator_align, $item->class);
       break;
 
     case 'gmap':

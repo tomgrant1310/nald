@@ -35,7 +35,7 @@
 <?php elseif ($type == 'seperator'): ?>
     <div class="md-separator"></div>
 <?php elseif ($type == 'seperatortext'): ?>
-    <div class="md-separator-text md-separator-<?php print $item->seperator_align; ?>">
+    <div class="<?php print implode(' ', $item->class); ?>">
         <div><?php print $item->seperator_text; ?></div>
     </div>
 <?php elseif ($type == 'flickr'): ?>

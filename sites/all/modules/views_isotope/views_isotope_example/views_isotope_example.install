@@ -114,11 +114,24 @@ function views_isotope_example_install() {
  * Delete sample data.
  */
 function views_isotope_example_uninstall() {
+  // Delete the example nodes.
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->propertyCondition('type', 'views_isotope_example');
   $result = $query->execute();
-  foreach ($result['node'] as $node) {
-    node_delete($node->nid);
+  if (!empty($result['node'])) {
+    foreach ($result['node'] as $node) {
+      node_delete($node->nid);
+    }
+  }
+
+  // Delete the example fields.
+  $fields = array(
+    'views_isotope_example_color',
+    'views_isotope_example_shape',
+    'views_isotope_example_size',
+  );
+  foreach ($fields as $field_name) {
+    field_delete_field($field_name);
   }
 }

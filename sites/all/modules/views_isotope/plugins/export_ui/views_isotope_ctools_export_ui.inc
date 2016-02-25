@@ -11,6 +11,7 @@ $plugin = array(
   'access' => 'administer isotope',
   // Define the menu item.
   'menu' => array(
+    'menu prefix' => 'admin/config/user-interface',
     'menu item' => 'isotope',
     'menu title' => 'Isotope Configurations',
     'menu description' => 'Administer Isotope configurations.',
@@ -32,8 +33,6 @@ $plugin = array(
  */
 function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
   $config = $form_state['item'];
-
-  $ajax_layout_mode = '';
 
   $libraries = views_isotope_additional_libraries_list();
   $detected_libraries = views_isotope_check_additional_libraries();
@@ -94,67 +93,121 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
   $form['transitionDuration'] = array(
     '#type' => 'textfield',
     '#title' => t('Transition Duration'),
-    '#description' => t('To disable all transitions, set transitionDuration: 0.'),
+    '#description' => t('In a format suitable for CSS transition-duration (e.g. "0.2s"). To disable all transitions, set to "0".'),
     '#default_value' => $config->transitionDuration,
     '#required' => FALSE,
   );
 
-  if ($ajax_layout_mode == 'masonry') {
-    $form['isFitWidth'] = array(
-      '#type' => 'select',
-      '#options' => array(
-        0 => 'False',
-        1 => 'True',
+  $form['urlFilters'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      0 => 'False',
+      1 => 'True',
+    ),
+    '#title' => t('Use URL for Filters.'),
+    '#description' => t('Filters are represented in URL for benefit of browser history, bookmarking, etc.'),
+    '#default_value' => $config->urlFilters,
+    '#required' => FALSE,
+  );
+
+  $form['isFitWidth'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      0 => 'False',
+      1 => 'True',
+    ),
+    '#title' => t('isFitWidth'),
+    '#description' => t("Sets the width of the container to fit the available number of columns, based the size of container's parent element. When enabled, you can center the container with CSS."),
+    '#default_value' => $config->isFitWidth,
+    '#required' => FALSE,
+    '#states' => array(
+      'visible' => array(
+        ':input[name="layoutMode"]' => array("value" => 'masonry'),
       ),
-      '#title' => t('isFitWidth'),
-      '#description' => t("Sets the width of the container to fit the available number of columns, based the size of container's parent element. When enabled, you can center the container with CSS."),
-      '#default_value' => ($config->isFitWidth) ? $config->isFitWidth : 0,
-      '#required' => FALSE,
-    );
-  }
+    ),
+  );
 
-  if ($ajax_layout_mode == 'packery') {
-    $form['isHorizontal'] = array(
-      '#type' => 'select',
-      '#options' => array(
-        0 => 'False',
-        1 => 'True',
+  $form['isHorizontal'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      0 => 'False',
+      1 => 'True',
+    ),
+    '#title' => t('isHorizontal'),
+    '#description' => t('Arranges items horizontally instead of vertically.'),
+    '#default_value' => $config->isHorizontal,
+    '#required' => FALSE,
+    '#states' => array(
+      'visible' => array(
+        ':input[name="layoutMode"]' => array("value" => 'packery'),
       ),
-      '#title' => t('isHorizontal'),
-      '#description' => t('Arranges items horizontally instead of vertically.'),
-      '#default_value' => ($config->isHorizontal) ? $config->isHorizontal : 0,
-      '#required' => FALSE,
-    );
-  }
+    ),
+  );
 
-  if ($ajax_layout_mode == 'masonry' || $ajax_layout_mode == 'packery' || $ajax_layout_mode == 'masonryHorizontal') {
-    $form['stamp'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Stamp Selector'),
-      '#description' => t('Specifies elements that are stamped within the layout. These are special layout elements which will not be laid out. Rather, Isotope will layout item elements below stamped elements.'),
-      '#default_value' => $config->stamp,
-      '#required' => FALSE,
-    );
-  }
+  $form['stamp'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Stamp Selector'),
+    '#description' => t('Specifies elements that are stamped within the layout. These are special layout elements which will not be laid out. Rather, Isotope will layout item elements below stamped elements.'),
+    '#default_value' => $config->stamp,
+    '#required' => FALSE,
+    '#states' => array(
+      'visible' => array(
+        array(
+          array(':input[name="layoutMode"]' => array('value' => 'masonry')),
+          array(':input[name="layoutMode"]' => array('value' => 'packery')),
+          array(':input[name="layoutMode"]' => array('value' => 'masonryHorizontal')),
+        ),
+      ),
+    ),
+  );
 
-  if ($ajax_layout_mode == 'vertical') {
-    $form['horizontalAlignment'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Horizontal Alignment (decimal number 0 to 1)'),
-      '#description' => t('Aligns items horizontally. 0 will align the origin edge. 1 will align the opposite edge. 0.5 will align center.'),
-      '#default_value' => $config->horizontalAlignment,
-      '#required' => FALSE,
-    );
-  }
+  $form['horizontalAlignment'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Horizontal Alignment (decimal number 0 to 1)'),
+    '#description' => t('Aligns items horizontally. 0 will align the origin edge. 1 will align the opposite edge. 0.5 will align center.'),
+    '#default_value' => $config->horizontalAlignment,
+    '#required' => FALSE,
+    '#states' => array(
+      'visible' => array(
+        ':input[name="layoutMode"]' => array("value" => 'vertical'),
+      ),
+    ),
+  );
 
-  if ($ajax_layout_mode == 'horizontal') {
-    $form['verticalAlignment'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Vertical Alignment (decimal number 0 to 1)'),
-      '#description' => t('Aligns items vertically. 0 will align the origin edge. 1 will align the opposite edge. 0.5 will align center.'),
-      '#default_value' => $config->verticalAlignment,
-      '#required' => FALSE,
+  $form['verticalAlignment'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Vertical Alignment (decimal number 0 to 1)'),
+    '#description' => t('Aligns items vertically. 0 will align the origin edge. 1 will align the opposite edge. 0.5 will align center.'),
+    '#default_value' => $config->verticalAlignment,
+    '#required' => FALSE,
+    '#states' => array(
+      'visible' => array(
+        ':input[name="layoutMode"]' => array("value" => 'horizontal'),
+      ),
+    ),
+  );
+
+  $form['isOriginLeft'] = array(
+    '#type' => 'select',
+    '#options' => array(
+      1 => 'Left to Right',
+      0 => 'Right to Left',
+    ),
+    '#title' => t('Direction'),
+    '#description' => t('Layout direction (implements "isOriginLeft").'),
+    '#default_value' => $config->isOriginLeft,
+    '#required' => FALSE,
+  );
+
+  if (!module_exists('libraries')) {
+    $lib_link = l(t('the libraries module'), 'https://www.drupal.org/project/libraries',
+      array('attributes' => array('target' => '_blank')));
+    $form['instructions'] = array(
+      '#type' => 'item',
+      '#title' => t('Installing Additional Plugins'),
+      '#markup' => t('In order to install additional plugins please first install !link', array('!link' => $lib_link)),
     );
+    return;
   }
 
   foreach ($libraries as $lib_name => $library) {
@@ -172,7 +225,7 @@ function views_isotope_ctools_export_ui_form(&$form, &$form_state) {
       }
       $lib_path .= '/' . $library['filename'];
       $item = '<strong>' . $lib_link . '</strong><br />';
-      $item .= '<em>' . t('Install into: ') . $lib_path . '</em><br />';
+      $item .= t('<em>Install into: @path</em><br />', array('@path', $lib_path));
       $item .= $library['description'];
       $items[] = $item;
     }

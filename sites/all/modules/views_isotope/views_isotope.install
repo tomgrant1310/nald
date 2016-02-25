@@ -61,6 +61,11 @@ function views_isotope_schema() {
         'length' => '10',
         'description' => 'In CSS Time format.',
       ),
+      'urlFilters' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'description' => 'Should filters be represented in URL?',
+      ),
       'isFitWidth' => array(
         'type' => 'int',
         'size' => 'tiny',
@@ -85,6 +90,11 @@ function views_isotope_schema() {
         'type' => 'varchar',
         'length' => '3',
         'description' => 'Decimal between 0 and 1',
+      ),
+      'isOriginLeft' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'description' => 'isOriginLeft',
       ),
     ),
     'primary key' => array('pid'),
@@ -136,4 +146,28 @@ function views_isotope_requirements($phase) {
     }
   }
   return $requirements;
+}
+
+/**
+ * Add urlFilters field to isotope_configurations table.
+ */
+function views_isotope_update_7100() {
+  $spec = array(
+    'type' => 'int',
+    'size' => 'tiny',
+    'description' => 'Should filters be represented in URL?',
+  );
+  db_add_field('isotope_configurations', 'urlFilters', $spec);
+}
+
+/**
+ * Add isOriginLeft field to isotope_configurations table.
+ */
+function views_isotope_update_7101() {
+  $spec = array(
+    'type' => 'int',
+    'size' => 'tiny',
+    'description' => 'isOriginLeft',
+  );
+  db_add_field('isotope_configurations', 'isOriginLeft', $spec);
 }
